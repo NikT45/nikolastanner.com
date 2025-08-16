@@ -69,14 +69,14 @@ export default function VideoCard() {
             <div className="hidden lg:flex items-center justify-center p-4 mt-2 gap-6">
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
                     <Mic size={16} strokeWidth={2} className="text-[#252525]" />
-                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
+                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner&apos;s airpo...</p>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#252525]">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
                     <Volume2 size={16} strokeWidth={2} className="text-[#252525]" />
-                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
+                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner&apos;s airpo...</p>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#252525]">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
