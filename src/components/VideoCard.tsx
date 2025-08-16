@@ -21,10 +21,18 @@ export default function VideoCard() {
         }
     }, [showMessage]);
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col px-4">
             <div className="max-w-[720px] rounded-lg relative">
                 <div className="w-full aspect-video rounded-lg overflow-hidden">
-                    <video src="/loopedvid.mp4" className="w-full h-full object-cover rounded-lg" autoPlay loop muted />
+                    <video 
+                        src="/loopedvid.mp4" 
+                        className="w-full h-full object-cover rounded-lg" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        preload="auto"
+                    />
                 </div>
                 {/* Dark gradient overlay */}
                 <div className="absolute inset-0 pointer-events-none rounded-lg"
