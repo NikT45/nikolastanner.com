@@ -60,30 +60,30 @@ export default function VideoCard() {
             {/* New flex row under the video card */}
             <div className="flex items-center justify-center p-4 mt-2 gap-6">
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
-                    <Mic size={16} strokeWidth={2} className="text-gray-600" />
-                    <p className="text-gray-600 text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-gray-600">
+                    <Mic size={16} strokeWidth={2} className="text-[#252525]" />
+                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#252525]">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
-                    <Volume2 size={16} strokeWidth={2} className="text-gray-600" />
-                    <p className="text-gray-600 text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-gray-600">
+                    <Volume2 size={16} strokeWidth={2} className="text-[#252525]" />
+                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#252525]">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
-                    <Video size={16} strokeWidth={2} className="text-gray-600" />
-                    <p className="text-gray-600 text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>USB Camera V...</p>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-gray-600">
+                    <Video size={16} strokeWidth={2} className="text-[#252525]" />
+                    <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>USB Camera V...</p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#252525]">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
             </div>
                          <div className="relative">
                  <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 flex max-w-[600px] text-center flex-row items-center justify-items-center gap-2 transition-opacity duration-500 ${showMessage ? 'opacity-100' : 'opacity-0'}`}>
-                     <p className="text-black text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>
+                     <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>
                          {clickCount === 1 ? "None of these buttons do anything. If you couldn't tell, the video is just a loop." : "Why are you still clicking these? You should be clicking the big blue button."}
                      </p>
                  </div>

@@ -14,8 +14,8 @@ export default function Home() {
         <VideoCard />
         <div className="flex pl-32 pr-24 flex-col items-center justify-items-center">
           {/* <p className="text-black text-[28px] font-regular" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>I'm cooler in person</p> */}
-          <p className="text-black text-[28px] font-normal text-center" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Wanna skip the slides?</p>
-          <p className="text-black text-[14px] font-medium mt-4" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Get to know me over a call</p>
+          <p className="text-[#252525] text-[28px] font-normal text-center" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Wanna skip the slides?</p>
+          <p className="text-[#252525] text-[14px] font-medium mt-4" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Get to know me over a call</p>
           <button 
             onClick={() => window.open('https://calendly.com/ntanner2-fordham/30min', '_blank')}
             className="mt-5 w-[240px] bg-[#0B57D0] hover:bg-[#2566D4] hover:shadow-sm/30 text-white font-medium py-4 rounded-full mb-3 sm:mb-4 transition-all text-sm sm:text-base cursor-pointer"
@@ -46,7 +46,7 @@ export default function Home() {
                   <Copy size={14} strokeWidth={2} className="text-[#0B57D0]" />
                 </button>
               </div>
-              <button className="flex flex-row items-center justify-center w-[400px] bg-white text-[#0B57D0] hover:bg-[#EFF3FC] font-medium py-3 px-4 rounded-full transition-all cursor-pointer">
+              <button className="flex flex-row items-center justify-center gap-2 w-[400px] bg-white text-[#0B57D0] hover:bg-[#EFF3FC] font-medium py-3 px-4 rounded-full transition-all cursor-pointer">
                 <ChessIcon size={20} strokeWidth={2} className="text-[#0B57D0] flex-shrink-0" />
                 <span className="text-[14px] font-medium text-center">Add me on Chess.com and 1v1 me in a 10 minute rapid game while we chat in the chatbox</span>
               </button>
