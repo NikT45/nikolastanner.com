@@ -46,7 +46,10 @@ export default function Home() {
                   <Copy size={14} strokeWidth={2} className="text-[#0B57D0]" />
                 </button>
               </div>
-              <button className="flex flex-row items-center justify-center gap-2 w-[400px] bg-white text-[#0B57D0] hover:bg-[#EFF3FC] font-medium py-3 px-4 rounded-full transition-all cursor-pointer">
+              <button 
+                onClick={() => window.open('https://link.chess.com/friend/nqj3wS', '_blank')}
+                className="flex flex-row items-center justify-center gap-2 w-[400px] bg-white text-[#0B57D0] hover:bg-[#EFF3FC] font-medium py-3 px-4 rounded-full transition-all cursor-pointer"
+              >
                 <ChessIcon size={20} strokeWidth={2} className="text-[#0B57D0] flex-shrink-0" />
                 <span className="text-[14px] font-medium text-center">Add me on Chess.com and 1v1 me in a 10 minute rapid game while we chat in the chatbox</span>
               </button>
