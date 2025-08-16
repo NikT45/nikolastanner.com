@@ -37,7 +37,7 @@ export default function VideoCard() {
                 {/* Dark gradient overlay */}
                 <div className="absolute inset-0 pointer-events-none rounded-lg"
                     style={{
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.6) 100%)'
+                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 35%, transparent 65%, rgba(0,0,0,0.6) 100%)'
                     }}>
                 </div>
                 {/* Top flex row overlay */}
