@@ -10,9 +10,9 @@ export default function Home() {
 
   return (
     <div className="flex p-4 flex-col items-center justify-items-center justify-center min-h-screen bg-white">
-      <div className="flex flex-row items-center justify-items-center">
+      <div className="flex flex-col lg:flex-row items-center justify-items-center">
         <VideoCard />
-        <div className="flex pl-32 pr-24 flex-col items-center justify-items-center">
+        <div className="flex lg:pl-32 lg:pr-24 pt-8 lg:pt-0 flex-col items-center justify-items-center">
           {/* <p className="text-black text-[28px] font-regular" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>I'm cooler in person</p> */}
           <p className="text-[#252525] text-[28px] font-normal text-center" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Wanna skip the slides?</p>
           <p className="text-[#252525] text-[14px] font-medium mt-4" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Get to know me over a call</p>

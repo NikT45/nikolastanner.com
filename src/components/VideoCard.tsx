@@ -58,7 +58,7 @@ export default function VideoCard() {
                 </div>
             </div>
             {/* New flex row under the video card */}
-            <div className="flex items-center justify-center p-4 mt-2 gap-6">
+            <div className="hidden lg:flex items-center justify-center p-4 mt-2 gap-6">
                 <button onClick={handleClick} className="flex flex-row items-center justify-items-center gap-2 cursor-pointer">
                     <Mic size={16} strokeWidth={2} className="text-[#252525]" />
                     <p className="text-[#252525] text-[.875rem] font-medium" style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}>Tanner's airpo...</p>
