@@ -5,6 +5,30 @@ import Dither from "@/components/Dither";
 import FormalityToggle from "@/components/FormalityToggle";
 import ProjectsSection from "@/components/ProjectsSection";
 import { useFormal } from "@/contexts/FormalContext";
+import GitHubCalendar from 'react-github-calendar';
+
+interface Activity {
+  date: string;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4;
+}
+
+const selectLastHalfYear = (contributions: Activity[]) => {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const shownMonths = 6;
+
+  return contributions.filter(activity => {
+    const date = new Date(activity.date);
+    const monthOfDay = date.getMonth();
+
+    return (
+      date.getFullYear() === currentYear &&
+      monthOfDay > currentMonth - shownMonths &&
+      monthOfDay <= currentMonth
+    );
+  });
+};
 
 export default function Home() {
     const { isFormal } = useFormal();
@@ -59,6 +83,21 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            <div className="relative z-20 flex justify-center items-center py-6">
+                <GitHubCalendar
+                    username="NikT45"
+                    colorScheme='light'
+                    transformData={selectLastHalfYear}
+                    theme={{
+                        light: ['#f0f4ff', '#a5b4fc', '#6366f1', '#4f46e5', '#3730a3']
+                    }}
+                    labels={{
+                        totalCount: '{{count}} contributions in the last half year'
+                    }}
+                />
+            </div>
+
 
             {/* Projects Section */}
             <ProjectsSection />

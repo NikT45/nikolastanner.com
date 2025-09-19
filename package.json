@@ -16,6 +16,7 @@
     "postprocessing": "^6.37.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-github-calendar": "^4.5.10",
     "three": "^0.180.0"
   },
   "devDependencies": {
