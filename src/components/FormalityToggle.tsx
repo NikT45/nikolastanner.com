@@ -7,7 +7,7 @@ export default function FormalityToggle() {
 
   return (
     <div
-      className="relative border-2 border-black flex items-center cursor-pointer"
+      className="relative border-1 border-black flex items-center cursor-pointer"
       onClick={() => setIsFormal(!isFormal)}
     >
       <div
@@ -16,10 +16,10 @@ export default function FormalityToggle() {
         }`}
       ></div>
       <div className="flex w-full relative z-10">
-        <span className={`px-4 py-2 font-semibold text-xs transition-colors duration-300 flex-1 text-center ${
+        <span className={`px-2 py-1 font-semibold text-xs transition-colors duration-300 flex-1 text-center ${
           isFormal ? 'text-white' : 'text-black'
         }`}>Formal</span>
-        <span className={`px-4 py-2 font-semibold text-xs transition-colors duration-300 flex-1 text-center ${
+        <span className={`px-2 py-1 font-semibold text-xs transition-colors duration-300 flex-1 text-center ${
           !isFormal ? 'text-white' : 'text-black'
         }`}>Informal</span>
       </div>

@@ -26,25 +26,21 @@ export default function Home() {
               </div>
             <div className="absolute z-10 inset-0 h-full w-full bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
 
-            <div className="relative z-20 pt-32">
-                {/* Formality toggle - positioned far out */}
-                <div className="absolute top-8 right-4 md:right-8 lg:right-16">
-                    <FormalityToggle />
-                </div>
+            <div className="relative flex flex-col gap-4 px-96 z-20 justify-center pt-32">
 
-                {/* Main content - centered row */}
-                <div className="flex justify-center items-center min-h-[60vh]">
-                    <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16 text-center">
-                        <img
-                            src={isFormal ? "/formal.JPG" : "/informal.JPG"}
-                            alt={isFormal ? "Formal" : "Informal"}
-                            className="w-64 h-64 md:w-40 md:h-40 lg:w-96 lg:h-96 object-cover mb-4 rounded-xl mx-auto"
-                        />
-                        <p className="text-[32px] md:text-[40px] lg:text-[48px] font-medium">
-                            {isFormal ? "Nikolas Tanner" : "Nik Tanner"}
-                        </p>
+                <div className="flex justify-end w-full">
+                    <div className="flex flex-row items-center">
+                    {/*<h1 className="font-semibold text-[40px]">Nik Tanner</h1>*/}
+                    <FormalityToggle />
                     </div>
                 </div>
+
+                <div className="w-full">
+                    <div className="flex flex-col">
+                    <p className="text-[32px]">{isFormal ? "Nikolas Tanner" : "Nik Tanner"}</p>
+                    </div>
+                </div>
+
             </div>
 
 

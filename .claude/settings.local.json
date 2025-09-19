@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/nikolastanner/Coding/Portfolio/first_portfolio/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
