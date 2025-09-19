@@ -3,15 +3,16 @@
 import HomePage from "@/components/HomePage";
 import Dither from "@/components/Dither";
 import FormalityToggle from "@/components/FormalityToggle";
+import ProjectsSection from "@/components/ProjectsSection";
 import { useFormal } from "@/contexts/FormalContext";
 
 export default function Home() {
     const { isFormal } = useFormal();
 
     return (
-        <div className="min-h-screen w-full" style={{ backgroundColor: '#F7FCFE' }}>
+        <div className="min-w-full" style={{ backgroundColor: '#F7FCFE' }}>
             <>
-            <div className="absolute z-0 inset-0 h-full w-full">
+            <div className="fixed z-0 inset-0 h-screen w-screen">
                 <Dither
                   waveColor={[0, 0, 1]}
                   disableAnimation={false}
@@ -21,10 +22,10 @@ export default function Home() {
                   waveAmplitude={0.3}
                   waveFrequency={3}
                   waveSpeed={0.01}
-                  opacity={0.25}
+                  opacity={0.3}
                 />
               </div>
-            <div className="absolute z-10 inset-0 h-full w-full bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
+            <div className="fixed z-10 inset-0 h-[300px] w-screen bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
 
             <div className="relative z-20 pt-32">
                 {/* Formality toggle - positioned far out */}
@@ -59,6 +60,8 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* Projects Section */}
+            <ProjectsSection />
 
             {/*<HomePage />*/}
             </>
