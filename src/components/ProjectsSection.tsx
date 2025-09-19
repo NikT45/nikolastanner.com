@@ -49,7 +49,7 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
   }, [delay]);
 
   return (
-    <span ref={ref} className="inline-block">
+    <span ref={ref} className="inline-block w-full">
       {children.split('').map((char, index) => (
         <span
           key={index}
@@ -77,29 +77,29 @@ export default function ProjectsSection() {
   return (
     <section className="relative z-20 w-full">
       <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16">
-        <div className="flex items-center gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
+        <div className="flex items-baseline gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
           <button
             onClick={() => setActiveTab('projects')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+            className={`font-medium transition-all duration-300 relative cursor-pointer flex-shrink-0 ${
               activeTab === 'projects'
                 ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
           >
-            <TextSplit delay={0}>Projects</TextSplit>
+            Projects
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
           <button
             onClick={() => setActiveTab('experience')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+            className={`font-medium transition-all duration-300 relative cursor-pointer flex-shrink-0 ${
               activeTab === 'experience'
                 ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
           >
-            <TextSplit delay={200}>Experience</TextSplit>
+            Experience
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
             }`}></span>

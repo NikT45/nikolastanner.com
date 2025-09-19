@@ -141,19 +141,19 @@ export default function Home() {
                     <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">
                         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
                             {/* Text content on the left */}
-                            <div className="flex-1 text-center md:text-left">
-                                <p className="text-[32px] md:text-[40px] lg:text-[48px] font-medium mb-4">
+                            <div className="flex-1 text-center md:text-left max-w-3xl">
+                                <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-medium mb-4 leading-tight">
                                     <TextSplit delay={200}>
                                         {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
                                     </TextSplit>
-                                </p>
-                                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                                </h1>
+                                <div className="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
                                     <TextSplit delay={0}>
                                         {isFormal ?
                                         "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
-                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting why your locally hosted Minecraft server won't work. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies. Outside of that, I have a deep fascination with all types of engineering and really enjoy learning about how things work. Ingenuity is all around us every single day, we just have to pay attention. Here are some of my favorites: Inductive loop traffic sensors (Simple but elegant), Instrument Landing Systems in aviation (Fascinating), Optimistic Messaging in Quant (I would've never thought to exploit TCP in this way)" }
+                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting why your locally hosted Minecraft server won't work. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
                                     </TextSplit>
-                                </p>
+                                </div>
                             </div>
 
                             {/* Image on the right */}

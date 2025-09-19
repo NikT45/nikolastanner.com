@@ -7,7 +7,7 @@ export default function FormalityToggle() {
 
   return (
     <div
-      className="relative border-1 border-black flex items-center cursor-pointer"
+      className="relative border-1 border-black flex items-center cursor-pointer bg-white"
       onClick={() => setIsFormal(!isFormal)}
     >
       <div
