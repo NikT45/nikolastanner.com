@@ -80,27 +80,27 @@ export default function ProjectsSection() {
         <div className="flex items-baseline gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
           <button
             onClick={() => setActiveTab('projects')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+            className={`transition-all duration-300 cursor-pointer ${
               activeTab === 'projects'
-                ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
-                : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
+                ? 'font-bold text-[24px] md:text-[36px] lg:text-[42px] text-black md:relative'
+                : 'font-medium text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black md:relative'
             }`}
           >
             Projects
-            <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
           <button
             onClick={() => setActiveTab('experience')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+            className={`transition-all duration-300 cursor-pointer ${
               activeTab === 'experience'
-                ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
-                : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
+                ? 'font-bold text-[24px] md:text-[36px] lg:text-[42px] text-black md:relative'
+                : 'font-medium text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black md:relative'
             }`}
           >
             Experience
-            <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
