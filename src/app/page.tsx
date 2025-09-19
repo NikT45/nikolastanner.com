@@ -160,7 +160,7 @@ export default function Home() {
                             <div className="flex-shrink-0">
                                 <ImageFadeIn delay={600}>
                                     <Image
-                                        src={isFormal ? "/formal.JPG" : "/informal.JPG"}
+                                        src={isFormal ? "/formal.jpg" : "/informal.JPG"}
                                         alt={isFormal ? "Formal" : "Informal"}
                                         width={384}
                                         height={384}
