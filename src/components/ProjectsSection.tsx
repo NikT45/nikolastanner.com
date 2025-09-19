@@ -49,11 +49,11 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
   }, [delay]);
 
   return (
-    <span ref={ref} className="inline-block w-full">
+    <span ref={ref} className="block">
       {children.split('').map((char, index) => (
         <span
           key={index}
-          className={`inline-block transition-all duration-500 ease-out ${
+          className={`inline-block transition-opacity transition-transform duration-500 ease-out ${
             isVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-4'
@@ -106,7 +106,7 @@ export default function ProjectsSection() {
           </button>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-12" key={activeTab}>
           {activeTab === 'projects' && projects.map((project, index) => (
             <div key={project.id} className="border-b border-gray-200 pb-8 last:border-b-0">
               <h3 className="text-xl md:text-2xl font-medium mb-3">

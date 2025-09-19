@@ -151,7 +151,7 @@ export default function Home() {
                                     <TextSplit delay={0}>
                                         {isFormal ?
                                         "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
-                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting why your locally hosted Minecraft server won't work. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
+                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting your locally hosted Minecraft server. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
                                     </TextSplit>
                                 </div>
                             </div>
@@ -159,13 +159,22 @@ export default function Home() {
                             {/* Image on the right */}
                             <div className="flex-shrink-0">
                                 <ImageFadeIn delay={600}>
-                                    <Image
-                                        src={isFormal ? "/formal.jpg" : "/informal.JPG"}
-                                        alt={isFormal ? "Formal" : "Informal"}
-                                        width={384}
-                                        height={384}
-                                        className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
-                                    />
+                                    <div className="relative">
+                                        <Image
+                                            src={isFormal ? "/formal.jpg" : "/informal.JPG"}
+                                            alt={isFormal ? "Formal" : "Informal"}
+                                            width={384}
+                                            height={384}
+                                            className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
+                                        />
+                                        {!isFormal && (
+                                            <div className="absolute -bottom-6 left-0 right-0 text-center">
+                                                <span className="text-xs text-gray-500 italic">
+                                                    (Building on a friends floor in LA)
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </ImageFadeIn>
                             </div>
                         </div>
