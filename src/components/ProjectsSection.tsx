@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import projectsData from "@/data/projects.json";
 import experienceData from "@/data/experience.json";
 
@@ -26,6 +26,49 @@ interface Experience {
   achievements: string[];
 }
 
+function TextSplit({ children, delay = 0 }: { children: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <span ref={ref} className="inline-block">
+      {children.split('').map((char, index) => (
+        <span
+          key={index}
+          className={`inline-block transition-all duration-500 ease-out ${
+            isVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-4'
+          }`}
+          style={{
+            transitionDelay: isVisible ? `${index * 30}ms` : '0ms'
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export default function ProjectsSection() {
   const projects: Project[] = projectsData;
   const experience: Experience[] = experienceData;
@@ -43,7 +86,7 @@ export default function ProjectsSection() {
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
           >
-            Projects
+            <TextSplit delay={0}>Projects</TextSplit>
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
@@ -56,7 +99,7 @@ export default function ProjectsSection() {
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
           >
-            Experience
+            <TextSplit delay={200}>Experience</TextSplit>
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
             }`}></span>
@@ -64,10 +107,10 @@ export default function ProjectsSection() {
         </div>
 
         <div className="space-y-12">
-          {activeTab === 'projects' && projects.map((project) => (
+          {activeTab === 'projects' && projects.map((project, index) => (
             <div key={project.id} className="border-b border-gray-200 pb-8 last:border-b-0">
               <h3 className="text-xl md:text-2xl font-medium mb-3">
-                {project.title}
+                <TextSplit delay={index * 100}>{project.title}</TextSplit>
               </h3>
 
               <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
@@ -106,15 +149,15 @@ export default function ProjectsSection() {
             </div>
           ))}
 
-          {activeTab === 'experience' && experience.map((exp) => (
+          {activeTab === 'experience' && experience.map((exp, index) => (
             <div key={exp.id} className="border-b border-gray-200 pb-8 last:border-b-0">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
                 <div>
                   <h3 className="text-xl md:text-2xl font-medium">
-                    {exp.position}
+                    <TextSplit delay={index * 100}>{exp.position}</TextSplit>
                   </h3>
                   <h4 className="text-lg md:text-xl text-gray-700 mb-2">
-                    {exp.company}
+                    <TextSplit delay={index * 100 + 200}>{exp.company}</TextSplit>
                   </h4>
                 </div>
                 <div className="text-sm md:text-base text-gray-600 md:text-right">

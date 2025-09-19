@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import HomePage from "@/components/HomePage";
 import Dither from "@/components/Dither";
 import FormalityToggle from "@/components/FormalityToggle";
@@ -30,6 +31,85 @@ const selectLastHalfYear = (contributions: Activity[]) => {
   });
 };
 
+function TextSplit({ children, delay = 0 }: { children: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <span ref={ref} className="inline-block">
+      {children.split('').map((char, index) => (
+        <span
+          key={index}
+          className={`inline-block transition-all duration-500 ease-out ${
+            isVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-4'
+          }`}
+          style={{
+            transitionDelay: isVisible ? `${index * 8}ms` : '0ms'
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function ImageFadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-out ${
+        isVisible
+          ? 'opacity-100 scale-100'
+          : 'opacity-0 scale-95'
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function Home() {
     const { isFormal } = useFormal();
 
@@ -51,7 +131,7 @@ export default function Home() {
                   waveAmplitude={0.3}
                   waveFrequency={3}
                   waveSpeed={0.01}
-                  opacity={0.3}
+                  opacity={0.2}
                 />
               </div>
             <div className="fixed z-10 inset-0 h-[300px] w-screen bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
@@ -63,20 +143,26 @@ export default function Home() {
                             {/* Text content on the left */}
                             <div className="flex-1 text-center md:text-left">
                                 <p className="text-[32px] md:text-[40px] lg:text-[48px] font-medium mb-4">
-                                    {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
+                                    <TextSplit delay={200}>
+                                        {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
+                                    </TextSplit>
                                 </p>
                                 <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    <TextSplit delay={0}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </TextSplit>
                                 </p>
                             </div>
 
                             {/* Image on the right */}
                             <div className="flex-shrink-0">
-                                <img
-                                    src={isFormal ? "/formal.JPG" : "/informal.JPG"}
-                                    alt={isFormal ? "Formal" : "Informal"}
-                                    className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
-                                />
+                                <ImageFadeIn delay={600}>
+                                    <img
+                                        src={isFormal ? "/formal.JPG" : "/informal.JPG"}
+                                        alt={isFormal ? "Formal" : "Informal"}
+                                        className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
+                                    />
+                                </ImageFadeIn>
                             </div>
                         </div>
                     </div>
