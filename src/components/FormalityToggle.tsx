@@ -60,7 +60,7 @@ export default function FormalityToggle() {
             <div className="absolute -top-5 right-4 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent"
                  style={{ borderBottomColor: '#F7FCFE' }}></div>
           </div>
-          <h4 className="font-semibold text-sm mb-2 text-black">What's this?</h4>
+          <h4 className="font-semibold text-sm mb-2 text-black">What&apos;s this?</h4>
           <p className="text-xs text-gray-700 leading-relaxed">
             I strongly dislike the sterility of portfolios and professional portrayals. Perhaps I am young and naive but I believe heavily in team dynamics contributing to more efficient group work and better outcomes. So I made this toggle as a way to portray a realer version of myself.
           </p>
