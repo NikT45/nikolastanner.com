@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import HomePage from "@/components/HomePage";
+import Image from "next/image";
 import Dither from "@/components/Dither";
 import FormalityToggle from "@/components/FormalityToggle";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -55,7 +55,7 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
 
   return (
     <span ref={ref} className="inline-block">
-      {children.split('').map((char, index) => (
+      {children.split(' ').map((word, index) => (
         <span
           key={index}
           className={`inline-block transition-all duration-500 ease-out ${
@@ -64,10 +64,10 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
               : 'opacity-0 translate-y-4'
           }`}
           style={{
-            transitionDelay: isVisible ? `${index * 8}ms` : '0ms'
+            transitionDelay: isVisible ? `${index * 50}ms` : '0ms'
           }}
         >
-          {char === ' ' ? '\u00A0' : char}
+          {word}{index < children.split(' ').length - 1 && '\u00A0'}
         </span>
       ))}
     </span>
@@ -149,7 +149,9 @@ export default function Home() {
                                 </p>
                                 <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
                                     <TextSplit delay={0}>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        {isFormal ?
+                                        "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
+                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting why your locally hosted Minecraft server won't work. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies. Outside of that, I have a deep fascination with all types of engineering and really enjoy learning about how things work. Ingenuity is all around us every single day, we just have to pay attention. Here are some of my favorites: Inductive loop traffic sensors (Simple but elegant), Instrument Landing Systems in aviation (Fascinating), Optimistic Messaging in Quant (I would've never thought to exploit TCP in this way)" }
                                     </TextSplit>
                                 </p>
                             </div>
@@ -157,9 +159,11 @@ export default function Home() {
                             {/* Image on the right */}
                             <div className="flex-shrink-0">
                                 <ImageFadeIn delay={600}>
-                                    <img
+                                    <Image
                                         src={isFormal ? "/formal.JPG" : "/informal.JPG"}
                                         alt={isFormal ? "Formal" : "Informal"}
+                                        width={384}
+                                        height={384}
                                         className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
                                     />
                                 </ImageFadeIn>
