@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "company": "Tech Company Inc.",
+    "position": "Senior Software Developer",
+    "duration": "2022 - Present",
+    "location": "San Francisco, CA",
+    "description": "Led development of scalable web applications using React, TypeScript, and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+    "technologies": ["React", "TypeScript", "Node.js", "AWS", "PostgreSQL"],
+    "achievements": [
+      "Improved application performance by 40%",
+      "Led a team of 4 developers",
+      "Implemented CI/CD pipeline reducing deployment time by 60%"
+    ]
+  },
+  {
+    "id": 2,
+    "company": "StartupCo",
+    "position": "Full Stack Developer",
+    "duration": "2020 - 2022",
+    "location": "New York, NY",
+    "description": "Developed and maintained full-stack applications from concept to deployment. Worked closely with product team to implement new features and optimize user experience.",
+    "technologies": ["JavaScript", "Python", "Django", "React", "Docker"],
+    "achievements": [
+      "Built core platform serving 10k+ users",
+      "Reduced API response time by 50%",
+      "Mentored 2 junior developers"
+    ]
+  },
+  {
+    "id": 3,
+    "company": "Digital Agency",
+    "position": "Frontend Developer",
+    "duration": "2019 - 2020",
+    "location": "Los Angeles, CA",
+    "description": "Created responsive web applications and interactive user interfaces for various clients. Collaborated with designers to implement pixel-perfect designs.",
+    "technologies": ["HTML5", "CSS3", "JavaScript", "Vue.js", "Sass"],
+    "achievements": [
+      "Delivered 15+ client projects on time",
+      "Improved website loading speed by 35%",
+      "Implemented modern CSS animations and transitions"
+    ]
+  }
+]

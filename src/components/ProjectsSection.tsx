@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import projectsData from "@/data/projects.json";
+import experienceData from "@/data/experience.json";
 
 interface Project {
   id: number;
@@ -13,18 +15,56 @@ interface Project {
   featured: boolean;
 }
 
+interface Experience {
+  id: number;
+  company: string;
+  position: string;
+  duration: string;
+  location: string;
+  description: string;
+  technologies: string[];
+  achievements: string[];
+}
+
 export default function ProjectsSection() {
   const projects: Project[] = projectsData;
+  const experience: Experience[] = experienceData;
+  const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('projects');
 
   return (
     <section className="relative z-20 w-full">
       <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16">
-        <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-medium mb-12">
-          Projects
-        </h2>
+        <div className="flex items-center gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
+          <button
+            onClick={() => setActiveTab('projects')}
+            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+              activeTab === 'projects'
+                ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
+                : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
+            }`}
+          >
+            Projects
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+              activeTab === 'projects' ? 'w-full' : 'w-0'
+            }`}></span>
+          </button>
+          <button
+            onClick={() => setActiveTab('experience')}
+            className={`font-medium transition-all duration-300 relative cursor-pointer ${
+              activeTab === 'experience'
+                ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
+                : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
+            }`}
+          >
+            Experience
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+              activeTab === 'experience' ? 'w-full' : 'w-0'
+            }`}></span>
+          </button>
+        </div>
 
         <div className="space-y-12">
-          {projects.map((project) => (
+          {activeTab === 'projects' && projects.map((project) => (
             <div key={project.id} className="border-b border-gray-200 pb-8 last:border-b-0">
               <h3 className="text-xl md:text-2xl font-medium mb-3">
                 {project.title}
@@ -62,6 +102,52 @@ export default function ProjectsSection() {
                 >
                   Live Demo
                 </a>
+              </div>
+            </div>
+          ))}
+
+          {activeTab === 'experience' && experience.map((exp) => (
+            <div key={exp.id} className="border-b border-gray-200 pb-8 last:border-b-0">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-medium">
+                    {exp.position}
+                  </h3>
+                  <h4 className="text-lg md:text-xl text-gray-700 mb-2">
+                    {exp.company}
+                  </h4>
+                </div>
+                <div className="text-sm md:text-base text-gray-600 md:text-right">
+                  <p>{exp.duration}</p>
+                  <p>{exp.location}</p>
+                </div>
+              </div>
+
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+                {exp.description}
+              </p>
+
+              <div className="mb-4">
+                <h5 className="text-sm font-medium text-gray-800 mb-2">Key Achievements:</h5>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  {exp.achievements.map((achievement, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {exp.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="text-sm text-gray-700"
+                  >
+                    {tech}{index < exp.technologies.length - 1 && ", "}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
