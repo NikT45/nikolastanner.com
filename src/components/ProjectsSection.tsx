@@ -80,26 +80,28 @@ export default function ProjectsSection() {
         <div className="flex items-baseline gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
           <button
             onClick={() => setActiveTab('projects')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer flex-shrink-0 ${
+            className={`font-medium transition-all duration-300 relative cursor-pointer opacity-0 animate-in fade-in slide-in-from-bottom-4 ${
               activeTab === 'projects'
                 ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
+            style={{ minWidth: 'max-content', animationDelay: '0ms', animationFillMode: 'forwards' }}
           >
-            Projects
+            <span className="block">Projects</span>
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
           <button
             onClick={() => setActiveTab('experience')}
-            className={`font-medium transition-all duration-300 relative cursor-pointer flex-shrink-0 ${
+            className={`font-medium transition-all duration-300 relative cursor-pointer opacity-0 animate-in fade-in slide-in-from-bottom-4 ${
               activeTab === 'experience'
                 ? 'text-[28px] md:text-[36px] lg:text-[42px] text-black'
                 : 'text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black'
             }`}
+            style={{ minWidth: 'max-content', animationDelay: '200ms', animationFillMode: 'forwards' }}
           >
-            Experience
+            <span className="block">Experience</span>
             <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
             }`}></span>
