@@ -34,15 +34,27 @@ export default function Home() {
 
                 {/* Main content - centered row */}
                 <div className="flex justify-center items-center min-h-[60vh]">
-                    <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16 text-center">
-                        <img
-                            src={isFormal ? "/formal.JPG" : "/informal.JPG"}
-                            alt={isFormal ? "Formal" : "Informal"}
-                            className="w-64 h-64 md:w-40 md:h-40 lg:w-96 lg:h-96 object-cover mb-4 rounded-xl mx-auto"
-                        />
-                        <p className="text-[32px] md:text-[40px] lg:text-[48px] font-medium">
-                            {isFormal ? "Nikolas Tanner" : "Nik Tanner"}
-                        </p>
+                    <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">
+                        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
+                            {/* Text content on the left */}
+                            <div className="flex-1 text-center md:text-left">
+                                <p className="text-[32px] md:text-[40px] lg:text-[48px] font-medium mb-4">
+                                    {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
+                                </p>
+                                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
+
+                            {/* Image on the right */}
+                            <div className="flex-shrink-0">
+                                <img
+                                    src={isFormal ? "/formal.JPG" : "/informal.JPG"}
+                                    alt={isFormal ? "Formal" : "Informal"}
+                                    className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
