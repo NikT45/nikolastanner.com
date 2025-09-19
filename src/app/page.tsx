@@ -36,6 +36,11 @@ export default function Home() {
     return (
         <div className="min-w-full" style={{ backgroundColor: '#F7FCFE' }}>
             <>
+            {/* Formality toggle - positioned at top above everything */}
+            <div className="fixed z-30 top-8 right-4 md:right-8 lg:right-16">
+                <FormalityToggle />
+            </div>
+
             <div className="fixed z-0 inset-0 h-screen w-screen">
                 <Dither
                   waveColor={[0, 0, 1]}
@@ -51,14 +56,8 @@ export default function Home() {
               </div>
             <div className="fixed z-10 inset-0 h-[300px] w-screen bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
 
-            <div className="relative z-20 pt-32">
-                {/* Formality toggle - positioned far out */}
-                <div className="absolute top-8 right-4 md:right-8 lg:right-16">
-                    <FormalityToggle />
-                </div>
-
-                {/* Main content - centered row */}
-                <div className="flex justify-center items-center min-h-[60vh]">
+            {/* Main content - full screen height, centered */}
+            <div className="relative z-20 h-screen flex justify-center items-center">
                     <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">
                         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
                             {/* Text content on the left */}
@@ -82,25 +81,24 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="relative z-20 flex justify-center items-center py-6">
-                <GitHubCalendar
-                    username="NikT45"
-                    colorScheme='light'
-                    transformData={selectLastHalfYear}
-                    theme={{
-                        light: ['#f0f4ff', '#a5b4fc', '#6366f1', '#4f46e5', '#3730a3']
-                    }}
-                    labels={{
-                        totalCount: '{{count}} contributions in the last half year'
-                    }}
-                />
-            </div>
 
 
             {/* Projects Section */}
             <ProjectsSection />
+
+            <div className="relative z-20 flex justify-center items-center py-6">
+            <GitHubCalendar
+            username="NikT45"
+            colorScheme='light'
+            transformData={selectLastHalfYear}
+            theme={{
+                light: ['#f0f4ff', '#a5b4fc', '#6366f1', '#4f46e5', '#3730a3']
+            }}
+            labels={{
+                totalCount: '{{count}} contributions in the last half year'
+            }}
+            />
+            </div>
 
             {/*<HomePage />*/}
             </>
