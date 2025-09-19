@@ -176,7 +176,7 @@ export default function Home() {
             {/* Projects Section */}
             <ProjectsSection />
 
-            <div className="relative z-20 flex justify-center items-center py-6">
+            <div className="relative z-20 flex justify-center items-center py-6 px-4 md:px-8">
             <GitHubCalendar
             username="NikT45"
             colorScheme='light'
