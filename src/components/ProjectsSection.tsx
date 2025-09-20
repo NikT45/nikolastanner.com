@@ -81,27 +81,27 @@ export default function ProjectsSection() {
         <div className="flex items-baseline gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
           <button
             onClick={() => setActiveTab('experience')}
-            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer md:relative ${
+            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer relative ${
               activeTab === 'experience'
                 ? 'text-dark'
                 : 'text-gray-600 hover:text-dark'
             }`}
           >
             Experience
-            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
           <button
             onClick={() => setActiveTab('projects')}
-            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer md:relative ${
+            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer relative ${
               activeTab === 'projects'
                 ? 'text-dark'
                 : 'text-gray-600 hover:text-dark'
             }`}
           >
             Projects
-            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
