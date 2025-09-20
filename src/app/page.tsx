@@ -147,7 +147,7 @@ export default function Home() {
                                         {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
                                     </TextSplit>
                                 </h1>
-                                <div className="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
+                                <div className="text-sm md:text-base lg:text-lg text-gray-800 leading-relaxed">
                                     <TextSplit delay={0}>
                                         {isFormal ?
                                         "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :

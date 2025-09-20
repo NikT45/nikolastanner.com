@@ -8,12 +8,13 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   technologies: string[];
-  githubUrl: string;
-  liveUrl: string;
+  githubUrl?: string;
+  liveUrl?: string;
   featured: boolean;
 }
+
 
 interface Experience {
   id: number;
@@ -72,48 +73,48 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
 export default function ProjectsSection() {
   const projects: Project[] = projectsData;
   const experience: Experience[] = experienceData;
-  const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('experience');
 
   return (
     <section className="relative z-20 w-full">
       <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="flex items-baseline gap-8 mb-12 h-[42px] md:h-[50px] lg:h-[60px]">
           <button
-            onClick={() => setActiveTab('projects')}
-            className={`transition-all duration-300 cursor-pointer ${
-              activeTab === 'projects'
-                ? 'font-bold text-[24px] md:text-[36px] lg:text-[42px] text-black md:relative'
-                : 'font-medium text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black md:relative'
-            }`}
-          >
-            Projects
-            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
-              activeTab === 'projects' ? 'w-full' : 'w-0'
-            }`}></span>
-          </button>
-          <button
             onClick={() => setActiveTab('experience')}
-            className={`transition-all duration-300 cursor-pointer ${
+            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer md:relative ${
               activeTab === 'experience'
-                ? 'font-bold text-[24px] md:text-[36px] lg:text-[42px] text-black md:relative'
-                : 'font-medium text-[24px] md:text-[28px] lg:text-[32px] text-gray-600 hover:text-black md:relative'
+                ? 'text-dark'
+                : 'text-gray-600 hover:text-dark'
             }`}
           >
             Experience
-            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
               activeTab === 'experience' ? 'w-full' : 'w-0'
+            }`}></span>
+          </button>
+          <button
+            onClick={() => setActiveTab('projects')}
+            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer md:relative ${
+              activeTab === 'projects'
+                ? 'text-dark'
+                : 'text-gray-600 hover:text-dark'
+            }`}
+          >
+            Projects
+            <span className={`hidden md:block absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
+              activeTab === 'projects' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
         </div>
 
         <div className="space-y-12" key={activeTab}>
           {activeTab === 'projects' && projects.map((project, index) => (
-            <div key={project.id} className="border-b border-gray-200 pb-8 last:border-b-0">
+            <div key={project.id} className="border-b border-gray-400 pb-8 last:border-b-0">
               <h3 className="text-xl md:text-2xl font-medium mb-3">
                 <TextSplit delay={index * 100}>{project.title}</TextSplit>
               </h3>
 
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+              <p className="text-gray-800 text-base md:text-lg leading-relaxed mb-4">
                 {project.description}
               </p>
 
@@ -121,7 +122,7 @@ export default function ProjectsSection() {
                 {project.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="text-sm text-gray-700"
+                    className="text-sm text-gray-800"
                   >
                     {tech}{index < project.technologies.length - 1 && ", "}
                   </span>
@@ -129,28 +130,32 @@ export default function ProjectsSection() {
               </div>
 
               <div className="flex gap-6 text-sm">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:text-gray-600 transition-colors underline"
-                >
-                  View on GitHub
-                </a>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:text-gray-600 transition-colors underline"
-                >
-                  Live Demo
-                </a>
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark hover:text-gray-600 transition-colors underline"
+                  >
+                    View on GitHub
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark hover:text-gray-600 transition-colors underline"
+                  >
+                    Live Demo
+                  </a>
+                )}
               </div>
             </div>
           ))}
 
           {activeTab === 'experience' && experience.map((exp, index) => (
-            <div key={exp.id} className="border-b border-gray-200 pb-8 last:border-b-0">
+            <div key={exp.id} className="border-b border-gray-400 pb-8 last:border-b-0">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
                 <div>
                   <h3 className="text-xl md:text-2xl font-medium">
@@ -166,16 +171,16 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-4">
+              <p className="text-gray-800 text-base md:text-lg leading-relaxed mb-4">
                 {exp.description}
               </p>
 
               <div className="mb-4">
                 <h5 className="text-sm font-medium text-gray-800 mb-2">Key Achievements:</h5>
-                <ul className="text-sm text-gray-600 space-y-1">
+                <ul className="text-sm text-gray-800 space-y-1">
                   {exp.achievements.map((achievement, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-gray-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                       {achievement}
                     </li>
                   ))}
@@ -186,7 +191,7 @@ export default function ProjectsSection() {
                 {exp.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="text-sm text-gray-700"
+                    className="text-sm text-gray-800"
                   >
                     {tech}{index < exp.technologies.length - 1 && ", "}
                   </span>

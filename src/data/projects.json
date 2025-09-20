@@ -1,32 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Project One",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "image": "/project1.jpg",
-    "technologies": ["React", "TypeScript", "Tailwind CSS"],
-    "githubUrl": "https://github.com/username/project1",
-    "liveUrl": "https://project1.com",
+    "title": "Oladex",
+    "description": "Oladex is a cross-platform mobile app and backend built with React Native, Node.js, and PostgreSQL that lets users manage contacts, record voice notes with real-time transcription, and perform semantic search using pgvector embeddings.",
+    "technologies": ["React Native", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
+    "githubUrl": "https://github.com/NikT45/oladexApp",
     "featured": true
   },
   {
     "id": 2,
-    "title": "Project Two",
-    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "image": "/project2.jpg",
-    "technologies": ["Next.js", "Node.js", "PostgreSQL"],
-    "githubUrl": "https://github.com/username/project2",
-    "liveUrl": "https://project2.com",
+    "title": "Inly @ useinly.com",
+    "description": "Built a React + Next.js web app with a Supabase backend for AI-powered therapy, featuring daily reflections with guided prompts, weekly personalized insights, and a context management pipeline for natural, engaging user experiences.",
+    "technologies": ["Next.js", "React", "TypeScript", "Supabase"],
+    "githubUrl": "https://github.com/NikT45/useinly.com",
+    "liveUrl": "https://www.useinly.com",
     "featured": false
   },
   {
     "id": 3,
-    "title": "Project Three",
-    "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "image": "/project3.jpg",
-    "technologies": ["Python", "Django", "React"],
-    "githubUrl": "https://github.com/username/project3",
-    "liveUrl": "https://project3.com",
+    "title": "Mira (MacOS Personal Assistant App)",
+    "description": "Mira is a Swift-based macOS personal assistant that captures on-screen context with global shortcuts, processes screenshots through a Node.js WebSocket server, and delivers real-time AI assistance with ~300ms response latency. It integrates Whisper.cpp for speech-to-text, Silero for voice activity detection, and supports low-latency audio-to-audio interactions. Mira also features LLM tool-calling, enabling dynamic overlays and context capture to make AI interactions seamless and responsive.",
+    "technologies": ["Swift", "Node.js", "Whisper.cpp", "SileroVAD"],
     "featured": true
   }
 ]

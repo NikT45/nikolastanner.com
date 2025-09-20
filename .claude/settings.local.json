@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//Users/nikolastanner/Coding/Portfolio/first_portfolio/**)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Read(//Users/nikolastanner/Desktop/**)"
     ],
     "deny": [],
     "ask": []

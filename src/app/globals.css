@@ -10,6 +10,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-dark: #101720;
   --font-sans: Satoshi, ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-satoshi: Satoshi, ui-sans-serif, system-ui, sans-serif;
