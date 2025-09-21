@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import projectsData from "@/data/projects.json";
 import experienceData from "@/data/experience.json";
+import { useFormal } from "@/contexts/FormalContext";
 
 interface Project {
   id: number;
@@ -73,7 +74,8 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
 export default function ProjectsSection() {
   const projects: Project[] = projectsData;
   const experience: Experience[] = experienceData;
-  const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('experience');
+  const [activeTab, setActiveTab] = useState<'projects' | 'experience' | 'interests'>('experience');
+  const { isFormal } = useFormal();
 
   return (
     <section className="relative z-20 w-full">
@@ -103,6 +105,19 @@ export default function ProjectsSection() {
             Projects
             <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
+            }`}></span>
+          </button>
+          <button
+            onClick={() => setActiveTab('interests')}
+            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer relative ${
+              activeTab === 'interests'
+                ? 'text-dark'
+                : 'text-gray-600 hover:text-dark'
+            }`}
+          >
+            {isFormal ? 'Interests' : 'Fun'}
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
+              activeTab === 'interests' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
         </div>
@@ -199,6 +214,35 @@ export default function ProjectsSection() {
               </div>
             </div>
           ))}
+
+          {activeTab === 'interests' && (
+            <div className="border-b border-gray-400 pb-8 last:border-b-0">
+              <h3 className="text-xl md:text-2xl font-medium mb-3">
+                <TextSplit delay={0}>{isFormal ? 'Personal Interests' : 'Things I Love'}</TextSplit>
+              </h3>
+
+              <p className="text-gray-800 text-base md:text-lg leading-relaxed mb-4">
+                {isFormal
+                  ? "Outside of programming, I enjoy exploring various interests that keep me engaged and inspired. I'm passionate about technology trends, enjoy reading about emerging innovations, and like to stay active through various recreational activities."
+                  : "When I'm not coding, I'm probably doing something equally nerdy or unexpectedly random. I love diving into rabbit holes about random tech, binge-watching way too many YouTube videos, and getting way too invested in optimizing things that probably don't need optimizing."
+                }
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {(isFormal
+                  ? ["Technology Research", "Reading", "Fitness", "Music", "Gaming", "Travel"]
+                  : ["YouTube Rabbit Holes", "Over-engineering", "Gaming", "Memes", "Random Tech Deep Dives", "Procrastinating Productively"]
+                ).map((interest, index) => (
+                  <span
+                    key={index}
+                    className="text-sm text-gray-800"
+                  >
+                    {interest}{index < (isFormal ? 5 : 5) && ", "}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
