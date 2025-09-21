@@ -151,7 +151,7 @@ export default function Home() {
                                     <TextSplit delay={0}>
                                         {isFormal ?
                                         "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
-                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech since I can remember, no one holds your hand trouble-shooting your locally hosted Minecraft server. Obviously I love programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
+                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech for as long as I can remember. After all, no one holds your hand trouble-shooting a locally hosted Minecraft server (pre ai too lol). When I was young I loved learning and tinkering, whether it was 3D Minecraft animations in Blender, modding Minecraft, or building my first desktop, I was chronically online. These days I channel a lot of that energy into programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
                                     </TextSplit>
                                 </div>
                             </div>

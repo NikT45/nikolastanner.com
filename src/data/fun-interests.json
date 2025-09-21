@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Singing/Songwriting",
+    "description": "I don't do it as much anymore but I enjoy making music. It's a nice creative outlet. The summer after highschool I partnered with one of my best friends to release an EP. You can listen to it [here](https://open.spotify.com/album/your-ep-link)."
+  },
+  {
+      "id": 2,
+      "title": "Chess",
+      "subheader": "~1100 Elo",
+      "description": "Chess is fun."
+  },
+  {
+    "id": 3,
+    "title": "Clash Royale",
+    "subheader": "15k trophies",
+    "description": "Growing up I loved playing competitive shooters like Counter Strike and R6. When I came to college I left my PC in China and don't really play those games anymore. Clash Royale satisfies my itch for competitive gaming and also connects me with a friend overseas which is really nice. It's one of the very few games I find competitive enough while still being playable over different regions with high ping, and from an engineering perspective it is a great game made by a great studio."
+  },
+  {
+    "id": 4,
+    "title": "Jewelry Making",
+    "description": "Pre AI Taught myself how to make pretty complex jewelry online. Back when I was in China you could literally order anything online. I practically had a jewelry making studio in the living room. I now have random understanding of annealing metals, soldering, and pickling things like 925 silver. See images [here](/images)."
+  },
+  {
+    "id": 6,
+    "title": "Film Photography",
+    "description": "There's something special in capturing the moment and not worrying about how the photos look. Moments are captured as is, and I like that. How authentic are pictures when they're retaken because your hair looked bad or you weren't smiling enough?"
+  }
+]

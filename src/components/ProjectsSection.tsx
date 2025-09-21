@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import projectsData from "@/data/projects.json";
 import experienceData from "@/data/experience.json";
+import formalInterestsData from "@/data/formal-interests.json";
+import funInterestsData from "@/data/fun-interests.json";
 import { useFormal } from "@/contexts/FormalContext";
 
 interface Project {
@@ -26,6 +28,19 @@ interface Experience {
   description: string;
   technologies: string[];
   achievements: string[];
+}
+
+interface FormalInterest {
+  id: number;
+  title: string;
+  description: string;
+}
+
+interface FunInterest {
+  id: number;
+  title: string;
+  subheader: string;
+  description: string;
 }
 
 function TextSplit({ children, delay = 0 }: { children: string; delay?: number }) {
@@ -74,6 +89,8 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
 export default function ProjectsSection() {
   const projects: Project[] = projectsData;
   const experience: Experience[] = experienceData;
+  const formalInterests: FormalInterest[] = formalInterestsData;
+  const funInterests: FunInterest[] = funInterestsData;
   const [activeTab, setActiveTab] = useState<'projects' | 'experience' | 'interests'>('experience');
   const { isFormal } = useFormal();
 
@@ -215,34 +232,45 @@ export default function ProjectsSection() {
             </div>
           ))}
 
-          {activeTab === 'interests' && (
-            <div className="border-b border-gray-400 pb-8 last:border-b-0">
-              <h3 className="text-xl md:text-2xl font-medium mb-3">
-                <TextSplit delay={0}>{isFormal ? 'Personal Interests' : 'Things I Love'}</TextSplit>
+          {activeTab === 'interests' && (isFormal ? formalInterests : funInterests).map((interest, index) => (
+            <div key={interest.id} className="border-b border-gray-400 pb-8 last:border-b-0">
+              <h3 className="text-xl md:text-2xl font-medium mb-1">
+                <TextSplit delay={index * 100}>
+                  {interest.title}
+                </TextSplit>
               </h3>
 
+              {!isFormal && (interest as FunInterest).subheader && (
+                <h4 className="text-lg text-gray-600 mb-3">
+                  <TextSplit delay={index * 100 + 200}>
+                    {(interest as FunInterest).subheader}
+                  </TextSplit>
+                </h4>
+              )}
+
               <p className="text-gray-800 text-base md:text-lg leading-relaxed mb-4">
-                {isFormal
-                  ? "Outside of programming, I enjoy exploring various interests that keep me engaged and inspired. I'm passionate about technology trends, enjoy reading about emerging innovations, and like to stay active through various recreational activities."
-                  : "When I'm not coding, I'm probably doing something equally nerdy or unexpectedly random. I love diving into rabbit holes about random tech, binge-watching way too many YouTube videos, and getting way too invested in optimizing things that probably don't need optimizing."
-                }
+                {interest.description.split(/(\[.*?\]\(.*?\))/).map((part, partIndex) => {
+                  const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/);
+                  if (linkMatch) {
+                    const [, text, url] = linkMatch;
+                    return (
+                      <a
+                        key={partIndex}
+                        href={url}
+                        target={url.startsWith('http') ? '_blank' : '_self'}
+                        rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="text-dark hover:text-gray-600 transition-colors underline"
+                      >
+                        {text}
+                      </a>
+                    );
+                  }
+                  return part;
+                })}
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                {(isFormal
-                  ? ["Technology Research", "Reading", "Fitness", "Music", "Gaming", "Travel"]
-                  : ["YouTube Rabbit Holes", "Over-engineering", "Gaming", "Memes", "Random Tech Deep Dives", "Procrastinating Productively"]
-                ).map((interest, index) => (
-                  <span
-                    key={index}
-                    className="text-sm text-gray-800"
-                  >
-                    {interest}{index < (isFormal ? 5 : 5) && ", "}
-                  </span>
-                ))}
-              </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </section>
