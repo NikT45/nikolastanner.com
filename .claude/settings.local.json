@@ -3,7 +3,8 @@
     "allow": [
       "Read(//Users/nikolastanner/Coding/Portfolio/first_portfolio/**)",
       "Bash(npm install:*)",
-      "Read(//Users/nikolastanner/Desktop/**)"
+      "Read(//Users/nikolastanner/Desktop/**)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

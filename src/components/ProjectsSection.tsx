@@ -39,7 +39,7 @@ interface FormalInterest {
 interface FunInterest {
   id: number;
   title: string;
-  subheader: string;
+  subheader?: string;
   description: string;
 }
 
@@ -243,7 +243,7 @@ export default function ProjectsSection() {
               {!isFormal && (interest as FunInterest).subheader && (
                 <h4 className="text-lg text-gray-600 mb-3">
                   <TextSplit delay={index * 100 + 200}>
-                    {(interest as FunInterest).subheader}
+                    {(interest as FunInterest).subheader!}
                   </TextSplit>
                 </h4>
               )}
