@@ -116,11 +116,10 @@ export default function Home() {
     return (
         <div className="min-w-full" style={{ backgroundColor: '#F7FCFE' }}>
             <>
-            {/* Formality toggle - positioned at top above everything */}
+            {/* Formality toggle - positioned at top above everything 
             <div className="fixed z-30 top-8 right-4 md:right-8 lg:right-16">
                 <FormalityToggle />
-            </div>
-
+            </div> */}
             <div className="fixed z-0 inset-0 h-screen w-screen">
                 <Dither
                   waveColor={[0, 0, 1]}
