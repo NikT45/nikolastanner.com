@@ -91,7 +91,7 @@ export default function ProjectsSection() {
   const experience: Experience[] = experienceData;
   const formalInterests: FormalInterest[] = formalInterestsData;
   const funInterests: FunInterest[] = funInterestsData;
-  const [activeTab, setActiveTab] = useState<'projects' | 'experience' | 'interests'>('experience');
+  const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('experience');
   const { isFormal } = useFormal();
 
   return (
@@ -122,19 +122,6 @@ export default function ProjectsSection() {
             Projects
             <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
               activeTab === 'projects' ? 'w-full' : 'w-0'
-            }`}></span>
-          </button>
-          <button
-            onClick={() => setActiveTab('interests')}
-            className={`font-medium text-[24px] md:text-[36px] lg:text-[42px] transition-colors duration-300 cursor-pointer relative ${
-              activeTab === 'interests'
-                ? 'text-dark'
-                : 'text-gray-600 hover:text-dark'
-            }`}
-          >
-            {isFormal ? 'Interests' : 'Fun'}
-            <span className={`absolute bottom-0 left-0 h-0.5 bg-dark transition-all duration-300 ${
-              activeTab === 'interests' ? 'w-full' : 'w-0'
             }`}></span>
           </button>
         </div>
@@ -232,45 +219,6 @@ export default function ProjectsSection() {
             </div>
           ))}
 
-          {activeTab === 'interests' && (isFormal ? formalInterests : funInterests).map((interest, index) => (
-            <div key={interest.id} className="border-b border-gray-400 pb-8 last:border-b-0">
-              <h3 className="text-xl md:text-2xl font-medium mb-1">
-                <TextSplit delay={index * 100}>
-                  {interest.title}
-                </TextSplit>
-              </h3>
-
-              {!isFormal && (interest as FunInterest).subheader && (
-                <h4 className="text-lg text-gray-600 mb-3">
-                  <TextSplit delay={index * 100 + 200}>
-                    {(interest as FunInterest).subheader!}
-                  </TextSplit>
-                </h4>
-              )}
-
-              <p className="text-gray-800 text-base md:text-lg leading-relaxed mb-4">
-                {interest.description.split(/(\[.*?\]\(.*?\))/).map((part, partIndex) => {
-                  const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/);
-                  if (linkMatch) {
-                    const [, text, url] = linkMatch;
-                    return (
-                      <a
-                        key={partIndex}
-                        href={url}
-                        target={url.startsWith('http') ? '_blank' : '_self'}
-                        rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-dark hover:text-gray-600 transition-colors underline"
-                      >
-                        {text}
-                      </a>
-                    );
-                  }
-                  return part;
-                })}
-              </p>
-
-            </div>
-          ))}
         </div>
       </div>
     </section>

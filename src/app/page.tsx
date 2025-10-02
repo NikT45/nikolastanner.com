@@ -7,6 +7,7 @@ import FormalityToggle from "@/components/FormalityToggle";
 import ProjectsSection from "@/components/ProjectsSection";
 import { useFormal } from "@/contexts/FormalContext";
 import GitHubCalendar from 'react-github-calendar';
+import { Github, Linkedin } from 'lucide-react';
 
 interface Activity {
   date: string;
@@ -74,6 +75,42 @@ function TextSplit({ children, delay = 0 }: { children: string; delay?: number }
   );
 }
 
+function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-800 ease-out ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-4'
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
 function ImageFadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -112,6 +149,18 @@ function ImageFadeIn({ children, delay = 0 }: { children: React.ReactNode; delay
 
 export default function Home() {
     const { isFormal } = useFormal();
+    const [isMouseInBottomHalf, setIsMouseInBottomHalf] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            const windowHeight = window.innerHeight;
+            const mouseY = e.clientY;
+            setIsMouseInBottomHalf(mouseY > windowHeight * 0.7);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
 
     return (
         <div className="min-w-full" style={{ backgroundColor: '#F7FCFE' }}>
@@ -147,11 +196,11 @@ export default function Home() {
                                     </TextSplit>
                                 </h1>
                                 <div className="text-sm md:text-base lg:text-lg text-gray-800 leading-relaxed">
-                                    <TextSplit delay={0}>
+                                    <FadeUp delay={400}>
                                         {isFormal ?
                                         "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
                                         "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech for as long as I can remember. After all, no one holds your hand trouble-shooting a locally hosted Minecraft server (pre ai too lol). When I was young I loved learning and tinkering, whether it was 3D Minecraft animations in Blender, modding Minecraft, or building my first desktop, I was chronically online. These days I channel a lot of that energy into programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
-                                    </TextSplit>
+                                    </FadeUp>
                                 </div>
                             </div>
 
@@ -184,7 +233,7 @@ export default function Home() {
             {/* Projects Section */}
             <ProjectsSection />
 
-            <div className="relative z-20 flex justify-center items-center py-6 px-4 md:px-8">
+            <div className="relative my-20 z-20 flex justify-center items-center py-6 px-4 md:px-8">
             <GitHubCalendar
             username="NikT45"
             colorScheme='light'
@@ -199,6 +248,31 @@ export default function Home() {
             </div>
 
             {/*<HomePage />*/}
+
+            {/* Bottom Navigation */}
+            <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30">
+                <div className="backdrop-blur-md border border-gray-200 rounded-full px-5 py-3 shadow-lg" style={{ backgroundColor: '#F7FCFE' }}>
+                    <div className="flex items-center gap-5">
+                        <a
+                            href="https://linkedin.com/in/niktanner"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group"
+                        >
+                            <Linkedin size={20} className="text-gray-400 hover:text-gray-600 transition-colors duration-200" />
+                        </a>
+                        <a
+                            href="https://github.com/NikT45"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group"
+                        >
+                            <Github size={20} className="text-gray-400 hover:text-gray-600 transition-colors duration-200" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             </>
         </div>
     );
