@@ -6,8 +6,8 @@ export default function Home() {
     <div className="flex flex-col items-center min-h-screen px-6">
       <aside className="w-full max-w-[480px] pt-16 pb-12 sm:pt-24 sm:pb-16 border-b border-rule flex flex-col gap-5">
         <div>
-          <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text">
-            nikolas tanner
+          <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text group cursor-default">
+            nik<span className="inline-block overflow-hidden whitespace-nowrap align-bottom max-w-[3em] opacity-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-w-0 group-hover:opacity-0">olas</span> tanner
           </h1>
           <p className="mt-1.5 text-[1.05rem] tracking-[0.08em] text-accent-deep">
             <Tooltip
@@ -60,9 +60,8 @@ export default function Home() {
           */}
 
           <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
-            currently studying computer science and interning at google odml this summer.
+            interested in startups. studying computer science and interning at google this summer on the on-device machine learning team.
             i ship side projects, run a cs club, and am looking for cofounders.
-            lately interested in audio-to-audio models.
           </p>
         </section>
 
