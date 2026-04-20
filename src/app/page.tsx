@@ -13,7 +13,7 @@ export default function Home() {
             <Tooltip
               content={
                 <>
-                  My unofficial Chinese name &mdash; derived from the idiom{" "}
+                  my unofficial chinese name &mdash; derived from the idiom{" "}
                   <em className="italic text-accent-deep">旭日东升</em>
                 </>
               }
@@ -22,7 +22,7 @@ export default function Home() {
             </Tooltip>
           </p>
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
-            Incoming software engineering intern @ <span className="text-accent-deep">Google</span>
+            incoming software engineering intern @ <span className="text-accent-deep">google</span>
           </p>
         </div>
         <nav>
@@ -59,9 +59,9 @@ export default function Home() {
           */}
 
           <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
-            Currently studying computer science and interning at Google ODML this summer.
-            I ship side projects, run a CS club, and am looking for cofounders.
-            Lately interested in audio-to-audio models.
+            currently studying computer science and interning at google odml this summer.
+            i ship side projects, run a cs club, and am looking for cofounders.
+            lately interested in audio-to-audio models.
           </p>
         </section>
 
@@ -69,8 +69,8 @@ export default function Home() {
           <p className="text-[0.875rem] tracking-[0.2em] text-accent mb-7">work</p>
           <div className="flex flex-col">
             {([
-              { name: "Google", desc: "Software engineering intern, on-device machine learning team", year: "incoming Summer 2026" },
-              { name: "Habits Inc.", desc: "Internal dashboard", year: "2025", months: "Feb 2025 – Apr 2025 · 3 mos" },
+              { name: "google", desc: "software engineering intern, on-device machine learning team", year: "incoming summer 2026" },
+              { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb 2025 – apr 2025 · 3 mos" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
             ))}
