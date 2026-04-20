@@ -78,7 +78,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="scroll-mt-18">
-          <p className="text-[1.4rem] font-light italic text-accent-deep mb-10">
+          <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             let&apos;s build
           </p>
           <div className="flex flex-col gap-[18px]">
