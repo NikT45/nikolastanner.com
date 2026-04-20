@@ -1,279 +1,108 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Dither from "@/components/Dither";
-import FormalityToggle from "@/components/FormalityToggle";
-import ProjectsSection from "@/components/ProjectsSection";
-import { useFormal } from "@/contexts/FormalContext";
-import GitHubCalendar from 'react-github-calendar';
-import { Github, Linkedin } from 'lucide-react';
-
-interface Activity {
-  date: string;
-  count: number;
-  level: 0 | 1 | 2 | 3 | 4;
-}
-
-const selectLastHalfYear = (contributions: Activity[]) => {
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth();
-  const shownMonths = 6;
-
-  return contributions.filter(activity => {
-    const date = new Date(activity.date);
-    const monthOfDay = date.getMonth();
-
-    return (
-      date.getFullYear() === currentYear &&
-      monthOfDay > currentMonth - shownMonths &&
-      monthOfDay <= currentMonth
-    );
-  });
-};
-
-function TextSplit({ children, delay = 0 }: { children: string; delay?: number }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <span ref={ref} className="inline-block">
-      {children.split(' ').map((word, index) => (
-        <span
-          key={index}
-          className={`inline-block transition-all duration-500 ease-out ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-4'
-          }`}
-          style={{
-            transitionDelay: isVisible ? `${index * 50}ms` : '0ms'
-          }}
-        >
-          {word}{index < children.split(' ').length - 1 && '\u00A0'}
-        </span>
-      ))}
-    </span>
-  );
-}
-
-function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-800 ease-out ${
-        isVisible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-4'
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function ImageFadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${
-        isVisible
-          ? 'opacity-100 scale-100'
-          : 'opacity-0 scale-95'
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
+import Tooltip from "@/components/Tooltip";
+import WorkRow from "@/components/WorkRow";
 
 export default function Home() {
-    const { isFormal } = useFormal();
-    const [isMouseInBottomHalf, setIsMouseInBottomHalf] = useState(false);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            const windowHeight = window.innerHeight;
-            const mouseY = e.clientY;
-            setIsMouseInBottomHalf(mouseY > windowHeight * 0.7);
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-
-    return (
-        <div className="min-w-full" style={{ backgroundColor: '#F7FCFE' }}>
-            <>
-            {/* Formality toggle - positioned at top above everything 
-            <div className="fixed z-30 top-8 right-4 md:right-8 lg:right-16">
-                <FormalityToggle />
-            </div> */}
-            <div className="fixed z-0 inset-0 h-screen w-screen">
-                <Dither
-                  waveColor={[0, 0, 1]}
-                  disableAnimation={false}
-                  enableMouseInteraction={false}
-                  mouseRadius={0.3}
-                  colorNum={4}
-                  waveAmplitude={0.3}
-                  waveFrequency={3}
-                  waveSpeed={0.01}
-                  opacity={0.2}
-                />
-              </div>
-            <div className="fixed z-10 inset-0 h-[300px] w-screen bg-gradient-to-b to-transparent" style={{ backgroundImage: 'linear-gradient(to bottom, #F7FCFE, transparent)' }}></div>
-
-            {/* Main content - full screen height, centered */}
-            <div className="relative z-20 h-screen flex justify-center items-center">
-                    <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">
-                        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
-                            {/* Text content on the left */}
-                            <div className="flex-1 text-center md:text-left max-w-3xl">
-                                <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-medium mb-4 leading-tight">
-                                    <TextSplit delay={200}>
-                                        {isFormal ? "Hello, I'm Nik!" : "Hey, I'm Nik!"}
-                                    </TextSplit>
-                                </h1>
-                                <div className="text-sm md:text-base lg:text-lg text-gray-800 leading-relaxed">
-                                    <FadeUp delay={400}>
-                                        {isFormal ?
-                                        "I'm Taiwanese American, grew up in Beijing, and now I'm a junior Computer Science student at Fordham. I'm a builder who loves turning ideas into real, working products, and I spend a lot of my time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." :
-                                        "I'm a Taiwanese American computer fanatic that grew up in Beijing. I've been into tech for as long as I can remember. After all, no one holds your hand trouble-shooting a locally hosted Minecraft server (pre ai too lol). When I was young I loved learning and tinkering, whether it was 3D Minecraft animations in Blender, modding Minecraft, or building my first desktop, I was chronically online. These days I channel a lot of that energy into programming and spend a majority of time hacking on side projects, competing in hackathons, and experimenting with new tools and technologies." }
-                                    </FadeUp>
-                                </div>
-                            </div>
-
-                            {/* Image on the right */}
-                            <div className="flex-shrink-0">
-                                <ImageFadeIn delay={600}>
-                                    <div className="relative">
-                                        <Image
-                                            src={isFormal ? "/formal.jpg" : "/informal.JPG"}
-                                            alt={isFormal ? "Formal" : "Informal"}
-                                            width={384}
-                                            height={384}
-                                            className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-xl"
-                                        />
-                                        {!isFormal && (
-                                            <div className="absolute -bottom-6 left-0 right-0 text-center">
-                                                <span className="text-xs text-gray-500 italic">
-                                                    (Building on a friends floor in LA)
-                                                </span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </ImageFadeIn>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            {/* Projects Section */}
-            <ProjectsSection />
-
-            <div className="relative my-20 z-20 flex justify-center items-center py-6 px-4 md:px-8">
-            <GitHubCalendar
-            username="NikT45"
-            colorScheme='light'
-            transformData={selectLastHalfYear}
-            theme={{
-                light: ['#f0f4ff', '#a5b4fc', '#6366f1', '#4f46e5', '#3730a3']
-            }}
-            labels={{
-                totalCount: '{{count}} contributions in the last half year'
-            }}
-            />
-            </div>
-
-            {/*<HomePage />*/}
-
-            {/* Bottom Navigation */}
-            <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30">
-                <div className="backdrop-blur-md border border-gray-200 rounded-full px-5 py-3 shadow-lg" style={{ backgroundColor: '#F7FCFE' }}>
-                    <div className="flex items-center gap-5">
-                        <a
-                            href="https://linkedin.com/in/niktanner"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group"
-                        >
-                            <Linkedin size={20} className="text-gray-400 hover:text-gray-600 transition-colors duration-200" />
-                        </a>
-                        <a
-                            href="https://github.com/NikT45"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group"
-                        >
-                            <Github size={20} className="text-gray-400 hover:text-gray-600 transition-colors duration-200" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            </>
+  return (
+    <div className="flex flex-col items-center min-h-screen px-6">
+      <aside className="w-full max-w-[480px] pt-16 pb-12 sm:pt-24 sm:pb-16 border-b border-rule flex flex-col gap-5">
+        <div>
+          <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text">
+            nikolas tanner
+          </h1>
+          <p className="mt-1.5 text-[1.05rem] tracking-[0.08em] text-accent-deep">
+            <Tooltip
+              content={
+                <>
+                  My unofficial Chinese name &mdash; derived from the idiom{" "}
+                  <em className="italic text-accent-deep">旭日东升</em>
+                </>
+              }
+            >
+              唐旭东
+            </Tooltip>
+          </p>
+          <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
+            Incoming software engineering intern @ <span className="text-accent-deep">Google</span>
+          </p>
         </div>
-    );
+        <nav>
+          <ul className="list-none flex flex-row gap-7 p-0 m-0">
+            <li>
+              <a href="#work" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+                work
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+                contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main className="w-full max-w-[480px] pt-14 pb-[100px] sm:pt-20 sm:pb-[140px] flex flex-col gap-20">
+        <section id="about" className="scroll-mt-18">
+          {/* Portrait — uncomment to show
+          <div className="w-full">
+            <div className="relative inline-block w-[52%] p-[14px] border border-rule outline outline-4 outline-bg [outline-offset:-14px]">
+              <Image
+                src="/formal.jpg"
+                alt="Nikolas Tanner"
+                width={480}
+                height={640}
+                priority
+                className="w-full h-auto aspect-[3/4] object-cover block"
+              />
+            </div>
+          </div>
+          */}
+
+          <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
+            Currently studying computer science and interning at Google ODML this summer.
+            I ship side projects, run a CS club, and am looking for cofounders.
+            Lately interested in audio-to-audio models.
+          </p>
+        </section>
+
+        <section id="work" className="scroll-mt-18">
+          <p className="text-[0.875rem] tracking-[0.2em] text-accent mb-7">work</p>
+          <div className="flex flex-col">
+            {([
+              { name: "Google", desc: "Software engineering intern, on-device machine learning team", year: "incoming Summer 2026" },
+              { name: "Habits Inc.", desc: "Internal dashboard", year: "2025", months: "Feb 2025 – Apr 2025 · 3 mos" },
+            ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
+              <WorkRow key={p.name} entry={p} />
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="scroll-mt-18">
+          <p className="text-[1.4rem] font-light italic text-accent-deep mb-10">
+            let&apos;s build
+          </p>
+          <div className="flex flex-col gap-[18px]">
+            <div className="flex items-baseline gap-5">
+              <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">email</span>
+              <a href="mailto:ntanner@fordham.edu" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+                ntanner@fordham.edu
+              </a>
+            </div>
+            <div className="flex items-baseline gap-5">
+              <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">github</span>
+              <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+                github.com/NikT45
+              </a>
+            </div>
+            <div className="flex items-baseline gap-5">
+              <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">linkedin</span>
+              <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+                linkedin.com/in/niktanner
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }

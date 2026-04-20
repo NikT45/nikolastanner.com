@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
-import { FormalProvider } from "@/contexts/FormalContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const figtree = Figtree({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-figtree",
 });
 
 export const metadata: Metadata = {
-  title: "Nikolas Tanner's Portfolio",
-  description: "Nikolas Tanner's Portfolio",
+  title: "Nikolas Tanner",
+  description: "Nikolas Tanner — Software Engineer",
+  icons: {
+    icon: "/tang.png",
+  },
 };
 
 export default function RootLayout({
@@ -24,14 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <FormalProvider>
-          {children}
-        </FormalProvider>
-      </body>
+    <html lang="en" className={figtree.variable}>
+      <body className="bg-bg text-text font-light min-h-screen">{children}</body>
     </html>
   );
 }
