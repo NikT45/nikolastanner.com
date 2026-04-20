@@ -14,7 +14,7 @@ export default function Home() {
               sun
               content={
                 <>
-                  my unofficial chinese name &mdash; derived from the idiom{" "}
+                  my chinese name &mdash; derived from the idiom{" "}
                   <em className="italic text-accent-deep">旭日东升</em>
                 </>
               }
@@ -60,8 +60,8 @@ export default function Home() {
           */}
 
           <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
-            interested in startups. studying computer science and interning at google this summer on the on-device machine learning team.
-            i ship side projects, run a cs club, and am looking for cofounders.
+            studying computer science in nyc and interning at google this summer on the on-device machine learning team.
+            working towards building a company.
           </p>
         </section>
 
