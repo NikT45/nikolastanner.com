@@ -8,12 +8,14 @@ export default function Tooltip({
   delay = 120,
   align = "left",
   open: openProp,
+  sun = false,
 }: {
   content: ReactNode;
   children: ReactNode;
   delay?: number;
   align?: "left" | "right";
   open?: boolean;
+  sun?: boolean;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
   const isControlled = openProp !== undefined;
@@ -66,8 +68,14 @@ export default function Tooltip({
           aria-hidden="true"
           className={`absolute ${arrowAlign} -top-[5px] w-2.5 h-2.5 bg-bg border-l border-t border-rule rotate-45 rounded-[2px]`}
         />
-        <span className="relative block bg-bg border border-rule rounded-lg shadow-[0_10px_30px_-8px_rgba(26,15,30,0.2),0_2px_6px_-2px_rgba(26,15,30,0.08)] px-4 py-3 text-[0.875rem] leading-[1.7] text-text-mid tracking-[0.02em]">
-          {content}
+        <span className="relative block overflow-hidden bg-bg border border-rule rounded-lg shadow-[0_10px_30px_-8px_rgba(26,15,30,0.2),0_2px_6px_-2px_rgba(26,15,30,0.08)] px-4 py-3 text-[0.875rem] leading-[1.7] text-text-mid tracking-[0.02em]">
+          {sun && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-4 -right-7 w-14 h-14 bg-[url('/newSun.png')] bg-contain bg-no-repeat"
+            />
+          )}
+          <span className="relative block">{content}</span>
         </span>
       </span>
     </span>

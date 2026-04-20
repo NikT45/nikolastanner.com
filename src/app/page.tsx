@@ -11,6 +11,7 @@ export default function Home() {
           </h1>
           <p className="mt-1.5 text-[1.05rem] tracking-[0.08em] text-accent-deep">
             <Tooltip
+              sun
               content={
                 <>
                   my unofficial chinese name &mdash; derived from the idiom{" "}
