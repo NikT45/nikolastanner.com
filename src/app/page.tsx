@@ -1,3 +1,4 @@
+import HorseAnimation from "@/components/HorseAnimation";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
 
@@ -77,7 +78,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-18">
+        <section id="contact" className="scroll-mt-18 relative">
+          <HorseAnimation className="hidden lg:block absolute bottom-0 right-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             let&apos;s build
           </p>
