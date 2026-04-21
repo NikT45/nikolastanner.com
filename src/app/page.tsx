@@ -79,7 +79,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="scroll-mt-18 relative">
-          <HorseAnimation className="hidden lg:block absolute bottom-0 right-0" />
+          <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             let&apos;s build
           </p>
