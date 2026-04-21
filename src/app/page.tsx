@@ -61,7 +61,7 @@ export default function Home() {
           */}
 
           <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
-            studying computer science in nyc and interning at google this summer on the on-device machine learning team.
+            studying computer science and interning at google this summer on the on-device machine learning team.
             working towards building a company.
           </p>
         </section>
