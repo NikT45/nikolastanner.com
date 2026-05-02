@@ -12,11 +12,12 @@ export default function Home() {
           </h1>
           <p className="mt-1.5 text-[1.05rem] tracking-[0.08em] text-accent-deep">
             <Tooltip
-              sun
+              bgImage="/newNameBg.png"
               content={
                 <>
                   my chinese name &mdash; derived from the idiom{" "}
-                  <em className="italic text-accent-deep">旭日东升</em>
+                  <em className="italic text-accent-deep">旭日东升</em>,
+                  {" "}&ldquo;the rising sun ascends in the east&rdquo;
                 </>
               }
             >
