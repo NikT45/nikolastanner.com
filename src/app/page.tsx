@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="relative flex flex-col items-center min-h-screen px-6">
       <img
-        src="/bgassetnewnoise.png"
+        src="/bgAssetNewNoise.png"
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-screen -z-10 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
