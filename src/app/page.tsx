@@ -4,7 +4,13 @@ import WorkRow from "@/components/WorkRow";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center min-h-screen px-6">
+    <div className="relative flex flex-col items-center min-h-screen px-6">
+      <img
+        src="/bgassetnewnoise.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-screen -z-10 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
+      />
       <aside className="w-full max-w-[480px] pt-16 pb-12 sm:pt-24 sm:pb-16 border-b border-rule flex flex-col gap-5">
         <div>
           <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text group cursor-default">
