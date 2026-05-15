@@ -13,11 +13,11 @@
 @theme {
   --color-bg: #f8f4f1;
   --color-bg-subtle: #ede5e0;
-  --color-text: #1a0f1e;
-  --color-text-mid: #6a4a62;
-  --color-text-dim: #b098a8;
-  --color-accent: #9b6b8a;
-  --color-accent-deep: #7e4266;
+  --color-text: #060C10;
+  --color-text-mid: #0D1921;
+  --color-text-dim: #83AEC5;
+  --color-accent: #195C84;
+  --color-accent-deep: #195C84;
   --color-rule: rgba(26, 15, 30, 0.12);
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
 }
