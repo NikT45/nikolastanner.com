@@ -1,17 +1,19 @@
+import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center min-h-screen px-6">
+    <div className="relative isolate flex min-h-screen flex-col items-center px-6">
+      <DiaGradient />
       <img
         src="/bgAssetNewNoise.png"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-screen -z-10 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
+        className="pointer-events-none absolute left-1/2 top-0 z-0 w-screen -translate-x-1/2 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
       />
-      <aside className="w-full max-w-[480px] pt-16 pb-12 sm:pt-24 sm:pb-16 border-b border-rule flex flex-col gap-5">
+      <aside className="relative z-10 flex w-full max-w-[480px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
         <div>
           <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text group cursor-default">
             nik<span className="inline-block overflow-hidden whitespace-nowrap align-bottom max-w-[3em] opacity-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-w-0 group-hover:opacity-0">olas</span> tanner
@@ -50,7 +52,7 @@ export default function Home() {
         </nav>
       </aside>
 
-      <main className="w-full max-w-[480px] pt-14 pb-[100px] sm:pt-20 sm:pb-[140px] flex flex-col gap-20">
+      <main className="relative z-10 flex w-full max-w-[480px] flex-col gap-20 pb-[410px] pt-14 sm:pb-[480px] sm:pt-20">
         <section id="about" className="scroll-mt-18">
           {/* Portrait — uncomment to show
           <div className="w-full">
