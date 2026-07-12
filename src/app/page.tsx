@@ -52,7 +52,7 @@ export default function Home() {
         </nav>
       </aside>
 
-      <main className="relative z-10 flex w-full max-w-[480px] flex-col gap-20 pb-[410px] pt-14 sm:pb-[480px] sm:pt-20">
+      <main className="relative z-10 flex w-full max-w-[480px] flex-col gap-20 pb-[390px] pt-14 sm:pb-[480px] sm:pt-20">
         <section id="about" className="scroll-mt-18">
           {/* Portrait — uncomment to show
           <div className="w-full">
