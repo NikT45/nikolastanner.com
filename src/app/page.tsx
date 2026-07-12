@@ -69,9 +69,8 @@ export default function Home() {
           </div>
           */}
 
-          <p className="text-[0.88rem] leading-[1.85] text-text-mid max-w-[44ch]">
-            studying computer science and interning at google this summer on the on-device machine learning team.
-            working towards building a company.
+          <p className="w-full whitespace-nowrap text-[0.75rem] leading-[1.85] text-text-mid sm:text-[0.88rem]">
+            studying computer science. building toward a company of my own.
           </p>
         </section>
 
@@ -79,7 +78,7 @@ export default function Home() {
           <p className="text-[0.875rem] tracking-[0.2em] text-accent mb-7">work</p>
           <div className="flex flex-col">
             {([
-              { name: "google", desc: "software engineering intern, on-device machine learning team", year: "2026", months: "may – aug · 14 wks" },
+              { name: "google", desc: "software engineering intern, developing ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 3 mos" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
@@ -90,7 +89,7 @@ export default function Home() {
         <section id="contact" className="scroll-mt-18 relative">
           <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
-            let&apos;s build
+            find me
           </p>
           <div className="flex flex-col gap-[18px]">
             <div className="flex items-baseline gap-5">
