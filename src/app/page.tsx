@@ -36,7 +36,7 @@ export default function Home() {
             software engineering intern @ <span className="text-accent-deep">google</span>
           </p>
         </div>
-        <nav>
+        {/* <nav>
           <ul className="list-none flex flex-row gap-7 p-0 m-0">
             <li>
               <a href="#work" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
@@ -49,7 +49,7 @@ export default function Home() {
               </a>
             </li>
           </ul>
-        </nav>
+        </nav> */}
       </aside>
 
       <main className="relative z-10 flex w-full max-w-[480px] flex-col gap-20 pb-[390px] pt-14 sm:pb-[480px] sm:pt-20">
@@ -78,7 +78,7 @@ export default function Home() {
           <p className="text-[0.875rem] tracking-[0.2em] text-accent mb-7">work</p>
           <div className="flex flex-col">
             {([
-              { name: "google", desc: "software engineering intern, developing ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
+              { name: "google", desc: "software engineering intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 3 mos" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
