@@ -80,7 +80,7 @@ export default function Home() {
           <div className="flex flex-col">
             {([
               { name: "google", desc: "software engineering intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
-              { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 3 mos" },
+              { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 12 wks" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
             ))}
