@@ -79,7 +79,7 @@ export default function Home() {
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">work</p>
           <div className="flex flex-col">
             {([
-              { name: "google", desc: "software engineering intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
+              { name: "google", desc: "swe intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 12 wks" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
@@ -111,7 +111,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-18 relative border-t border-rule pt-14">
+        {/* Rule is hidden on mobile: the horse sits above this section's top
+            edge there and the divider cuts straight through it. */}
+        <section id="contact" className="scroll-mt-18 relative border-rule pt-14 sm:border-t">
           <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             find me
