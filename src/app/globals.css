@@ -18,7 +18,12 @@
   --color-text-dim: #83AEC5;
   --color-accent: #195C84;
   --color-accent-deep: #195C84;
+  /* rule = structural section boundary. underline = interactive text.
+     Separate tokens so a link never carries the same weight as a divider;
+     the accent tint also makes hover (rule -> accent) a shade shift
+     rather than a hue jump. */
   --color-rule: rgba(26, 15, 30, 0.12);
+  --color-underline: rgba(25, 92, 132, 0.28);
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
 }
 

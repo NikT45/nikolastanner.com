@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import BottomBlur from "@/components/BottomBlur";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en" className={figtree.variable}>
       <body className="bg-bg text-text font-light min-h-screen">
         {children}
+        <BottomBlur />
         <Analytics />
       </body>
     </html>

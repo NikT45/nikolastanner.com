@@ -31,7 +31,7 @@ export default function WorkRow({ entry }: { entry: Entry }) {
 
   return (
     <div
-      className="grid grid-cols-[1fr_auto] items-baseline gap-6 py-7 border-b border-rule first:border-t cursor-default group"
+      className="grid grid-cols-[1fr_auto] items-baseline gap-6 py-5 cursor-default group"
       onMouseEnter={hoverable ? show : undefined}
       onMouseLeave={hoverable ? hide : undefined}
     >

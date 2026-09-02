@@ -1,5 +1,6 @@
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
+import ProjectRow, { type Project } from "@/components/ProjectRow";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
 
@@ -13,7 +14,7 @@ export default function Home() {
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 z-0 w-screen -translate-x-1/2 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
       />
-      <aside className="relative z-10 flex w-full max-w-[480px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
+      <aside className="relative z-10 flex w-full max-w-[640px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
         <div>
           <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text group cursor-default">
             nik<span className="inline-block overflow-hidden whitespace-nowrap align-bottom max-w-[3em] opacity-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-w-0 group-hover:opacity-0">olas</span> tanner
@@ -52,7 +53,7 @@ export default function Home() {
         </nav> */}
       </aside>
 
-      <main className="relative z-10 flex w-full max-w-[480px] flex-col gap-20 pb-[390px] pt-14 sm:pb-[480px] sm:pt-20">
+      <main className="relative z-10 flex w-full max-w-[640px] flex-col gap-14 pb-[390px] pt-14 sm:pb-[480px] sm:pt-20">
         <section id="about" className="scroll-mt-18">
           {/* Portrait — uncomment to show
           <div className="w-full">
@@ -74,8 +75,8 @@ export default function Home() {
           </p>
         </section>
 
-        <section id="work" className="scroll-mt-18">
-          <p className="text-[0.875rem] tracking-[0.2em] text-accent mb-7">work</p>
+        <section id="work" className="scroll-mt-18 border-t border-rule pt-14">
+          <p className="text-[1.4rem] font-light text-accent-deep mb-10">work</p>
           <div className="flex flex-col">
             {([
               { name: "google", desc: "software engineering intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
@@ -86,7 +87,31 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-18 relative">
+        <section id="projects" className="scroll-mt-18 border-t border-rule pt-14">
+          <p className="text-[1.4rem] font-light text-accent-deep mb-10">projects</p>
+          <div className="flex flex-col gap-16">
+            {([
+              {
+                name: "crestnotes",
+                desc: "meeting tool for customer success. records locally so no bot joins the call, then drafts your follow-up email",
+                bg: "/ProjectBG1.png",
+                shot: "/CrestnotesNew.png",
+                href: "https://crestnotes.com",
+              },
+              {
+                name: "mavn",
+                desc: "voice agent that books doctor visits and orders meds on doordash by driving a real browser. figma make challenge winner",
+                bg: "/ProjectBG2.png",
+                shot: "/MavnNew.png",
+                href: "https://devpost.com/software/mavn",
+              },
+            ] as Project[]).map((p, i) => (
+              <ProjectRow key={p.name} project={p} flip={i % 2 === 1} />
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="scroll-mt-18 relative border-t border-rule pt-14">
           <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             find me
@@ -94,19 +119,19 @@ export default function Home() {
           <div className="flex flex-col gap-[18px]">
             <div className="flex items-baseline gap-5">
               <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">email</span>
-              <a href="mailto:ntanner@fordham.edu" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+              <a href="mailto:ntanner@fordham.edu" className="text-[0.92rem] text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
                 ntanner@fordham.edu
               </a>
             </div>
             <div className="flex items-baseline gap-5">
               <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">github</span>
-              <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+              <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
                 github.com/NikT45
               </a>
             </div>
             <div className="flex items-baseline gap-5">
               <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">linkedin</span>
-              <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-rule pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+              <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
                 linkedin.com/in/niktanner
               </a>
             </div>
