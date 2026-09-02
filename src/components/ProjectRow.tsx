@@ -8,14 +8,18 @@ export interface Project {
   href?: string;
 }
 
-/* The tile flexes with the container, but the insets and radii are fixed px so
-   the three nested corners stay concentric at any tile size. Concentric corners
-   require inner radius = outer radius - inset:
-     tile      40px radius
-     frame     inset 20px      -> 40 - 20   = 20px radius
-     screenshot inset 7px + 0.6px border -> 20 - 7.6 = 12px radius */
+/* The frame and screenshot are inset with absolute positioning rather than
+   padding + h-full. A percentage height against an aspect-ratio parent does not
+   resolve reliably, which let the frame stretch past the tile's bottom edge;
+   insetting all four sides pins both dimensions outright.
+
+   Insets are fixed px so the three nested corners stay concentric at any tile
+   size. Concentric corners require inner radius = outer radius - inset:
+     tile       40px radius
+     frame      inset 20px               -> 40 - 20   = 20px radius
+     screenshot inset 7px + 0.6px border -> 20 - 7.6  = 12px radius */
 const tile = (project: Project) => (
-  <div className="group/tile relative aspect-square w-full overflow-hidden rounded-[40px] p-[20px]">
+  <div className="group/tile relative aspect-square w-full overflow-hidden rounded-[40px]">
     <Image
       src={project.bg}
       alt=""
@@ -24,8 +28,8 @@ const tile = (project: Project) => (
       sizes="(min-width: 640px) 320px, 100vw"
       className="pointer-events-none object-cover transition-[filter] duration-500 ease-out group-hover/tile:saturate-[0.7]"
     />
-    <div className="relative size-full rounded-[20px] border-[0.6px] border-white/40 bg-white/30 p-[7px] backdrop-blur-[2px]">
-      <div className="relative size-full overflow-hidden rounded-[12px]">
+    <div className="absolute inset-[20px] rounded-[20px] border-[0.6px] border-white/40 bg-white/30 backdrop-blur-[2px]">
+      <div className="absolute inset-[7px] overflow-hidden rounded-[12px]">
         <Image
           src={project.shot}
           alt={project.name}
@@ -53,7 +57,7 @@ export default function ProjectRow({
         flip ? "sm:flex-row-reverse" : "sm:flex-row"
       }`}
     >
-      <div className="flex-1">
+      <div className="w-full sm:flex-1">
         {project.href ? (
           <a
             href={project.href}
@@ -67,7 +71,7 @@ export default function ProjectRow({
           art
         )}
       </div>
-      <div className="flex flex-1 flex-col justify-center gap-2 pb-6 sm:pb-0">
+      <div className="flex w-full flex-col justify-center gap-2 pb-6 sm:w-auto sm:flex-1 sm:pb-0">
         <p className="text-[1.2rem] font-normal tracking-[0.01em] text-text">
           {project.href ? (
             <a
