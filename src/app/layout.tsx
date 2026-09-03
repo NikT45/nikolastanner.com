@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Nikolas Tanner",
   description: "Nikolas Tanner — Software Engineer",
   icons: {
-    icon: "/tang.png",
+    icon: "/newIcon.png",
   },
 };
 
