@@ -11,10 +11,26 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nikolastanner.com"),
   title: "Nikolas Tanner",
   description: "Nikolas Tanner — Software Engineer",
   icons: {
     icon: "/newIcon.png",
+  },
+  openGraph: {
+    title: "Nikolas Tanner",
+    description: "Nikolas Tanner — Software Engineer",
+    url: "https://nikolastanner.com",
+    siteName: "Nikolas Tanner",
+    type: "website",
+    images: [
+      {
+        url: "/banner.png",
+        width: 1200,
+        height: 628,
+        alt: "Nikolas Tanner — Software Engineer",
+      },
+    ],
   },
 };
 
