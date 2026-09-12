@@ -104,12 +104,12 @@ export default function Home() {
               google
               <GoogleIcon />
             </span>{" "}
-            where i got to build end to end an ai consumer product for the{" "}
+            where i got to build an ai consumer product end to end for the{" "}
             <span>
               ai edge gallery{" "}
               <span className="whitespace-nowrap">
                 team
-                <EdgeGalleryIcon />
+                <EdgeGalleryIcon />.
               </span>
             </span>
           </p>
