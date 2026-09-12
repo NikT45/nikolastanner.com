@@ -45,3 +45,4 @@ body {
   background-color: color-mix(in oklab, var(--color-accent) 20%, transparent);
   color: var(--color-accent-deep);
 }
+

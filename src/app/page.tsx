@@ -1,5 +1,7 @@
+import CardFan from "@/components/CardFan";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
+import { EdgeGalleryIcon, GoogleIcon } from "@/components/InlineIcon";
 import ProjectRow, { type Project } from "@/components/ProjectRow";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
@@ -70,8 +72,46 @@ export default function Home() {
           </div>
           */}
 
-          <p className="w-full whitespace-nowrap text-[0.75rem] leading-[1.85] text-text-mid sm:text-[0.88rem]">
-            studying computer science. building toward a company of my own.
+          <p className="w-full text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
+            <span className="whitespace-nowrap">
+              generalist
+              <CardFan
+                label="see what i've been up to"
+                cards={[
+                  {
+                    caption: "music",
+                    images: ["/generalist/music-1.webp", "/generalist/music-2.webp", "/generalist/music-3.webp"],
+                  },
+                  {
+                    caption: "design",
+                    images: ["/generalist/design-1.webp", "/generalist/design-2.webp", "/generalist/design-3.webp"],
+                  },
+                  {
+                    caption: "jewelry",
+                    images: [
+                      "/generalist/jewelry-1.webp",
+                      "/generalist/jewelry-2.webp",
+                      "/generalist/jewelry-3.webp",
+                      "/generalist/jewelry-4.webp",
+                    ],
+                  },
+                ]}
+              />
+            </span>
+            , interested in design, optimistic about the future. previously
+            interned at{" "}
+            <span className="whitespace-nowrap text-accent-deep">
+              google
+              <GoogleIcon />
+            </span>{" "}
+            where i got to build end to end an ai consumer product for the{" "}
+            <span>
+              ai edge gallery{" "}
+              <span className="whitespace-nowrap">
+                team
+                <EdgeGalleryIcon />
+              </span>
+            </span>
           </p>
         </section>
 
