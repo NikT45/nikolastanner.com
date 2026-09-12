@@ -185,6 +185,8 @@
    cards, narrow the swing, and slide the whole fan to the right. */
 @media (max-width: 1120px) {
   .fan {
+    /* body text drops to 16px here, so the icon shrinks with it */
+    --icon-h: 17px;
     --card-w: 120px;
     --card-h: 150px;
     --lift: 28px;

@@ -100,7 +100,7 @@ export default function Home() {
             </span>
             , interested in design, optimistic about the future. previously
             interned at{" "}
-            <span className="whitespace-nowrap text-accent-deep">
+            <span className="whitespace-nowrap">
               google
               <GoogleIcon />
             </span>{" "}
