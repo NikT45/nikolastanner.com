@@ -84,7 +84,7 @@ export default function Home() {
                   },
                   {
                     caption: "design",
-                    images: ["/generalist/design-1.webp", "/generalist/design-2.webp", "/generalist/design-3.webp"],
+                    images: ["/generalist/design-3.webp", "/generalist/design-1.webp", "/generalist/design-2.webp"],
                   },
                   {
                     caption: "jewelry",

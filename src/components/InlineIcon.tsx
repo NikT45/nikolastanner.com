@@ -20,7 +20,7 @@ export function GoogleIcon() {
    shapes inside (the PNG itself is trimmed and transparent). */
 export function EdgeGalleryIcon() {
   return (
-    <span className={`${wrap} align-[-0.06em] ml-[5px]`}>
+    <span className={`${wrap} align-[-0.13em] ml-[5px]`}>
       <span className="block h-[19px] w-[19px] rounded-[5px] bg-white p-[3px] ring-1 ring-rule">
         <img
           src="/galleryIcon.png"
