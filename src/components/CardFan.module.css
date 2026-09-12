@@ -17,8 +17,8 @@
 
   position: relative;
   display: inline-block;
-  vertical-align: -3px;
-  width: 26px;
+  vertical-align: -1px;
+  width: 22px;
   height: var(--icon-h);
   margin: 0 0 0 1px;
   cursor: pointer;
@@ -186,7 +186,7 @@
 @media (max-width: 1120px) {
   .fan {
     /* body text drops to 16px here, so the icon shrinks with it */
-    --icon-h: 17px;
+    --icon-h: 16px;
     --card-w: 120px;
     --card-h: 150px;
     --lift: 28px;
