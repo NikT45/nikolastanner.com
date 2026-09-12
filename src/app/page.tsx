@@ -36,7 +36,7 @@ export default function Home() {
             </Tooltip>
           </p>
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
-            software engineering intern @ <span className="text-accent-deep">google</span>
+            prev swe intern @ <span className="text-accent-deep">google</span>
           </p>
         </div>
         {/* <nav>
@@ -119,7 +119,7 @@ export default function Home() {
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">work</p>
           <div className="flex flex-col">
             {([
-              { name: "google", desc: "swe intern, working on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
+              { name: "google", desc: "swe intern, worked on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 12 wks" },
             ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
