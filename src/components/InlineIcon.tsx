@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
    paragraph's 1.75 line box so it never pushes lines apart. */
 export function IconPill({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-[0.3em] whitespace-nowrap rounded-full bg-bg-subtle px-[0.55em] py-[0.08em] leading-[1.3] align-baseline">
+    <span className="inline-flex items-center gap-[0.3em] whitespace-nowrap rounded-full bg-[#e2d8d2] px-[0.55em] py-[0.08em] leading-[1.3] align-baseline">
       {children}
     </span>
   );
