@@ -1,7 +1,7 @@
 import CardFan from "@/components/CardFan";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
-import { EdgeGalleryIcon, GoogleIcon } from "@/components/InlineIcon";
+import { EdgeGalleryIcon, GoogleIcon, IconPill } from "@/components/InlineIcon";
 import ProjectRow, { type Project } from "@/components/ProjectRow";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
@@ -73,7 +73,7 @@ export default function Home() {
           */}
 
           <p className="w-full text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
-            <span className="whitespace-nowrap">
+            <IconPill>
               generalist
               <CardFan
                 label="see what i've been up to"
@@ -97,20 +97,21 @@ export default function Home() {
                   },
                 ]}
               />
-            </span>
+            </IconPill>
             , interested in design, optimistic about the future. previously
             interned at{" "}
-            <span className="whitespace-nowrap">
+            <IconPill>
               google
               <GoogleIcon />
-            </span>{" "}
+            </IconPill>{" "}
             where i got to build an ai consumer product end to end for the{" "}
             <span>
               ai edge gallery{" "}
-              <span className="whitespace-nowrap">
+              <IconPill>
                 team
-                <EdgeGalleryIcon />.
-              </span>
+                <EdgeGalleryIcon />
+              </IconPill>
+              .
             </span>
           </p>
         </section>

@@ -1,9 +1,24 @@
-/* Inline brand marks that sit in running text, resting on the baseline. */
-const wrap = "inline-block ml-[4px] leading-none";
+import type { ReactNode } from "react";
+
+/* Wraps a word and its brand mark as one continuous pill. inline-flex with
+   centred items keeps the icon on the text's vertical midpoint regardless of
+   platform baseline quirks (iOS Safari sat the card fan noticeably low when it
+   was baseline-aligned). The tight line-height keeps the pill shorter than the
+   paragraph's 1.75 line box so it never pushes lines apart. */
+export function IconPill({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-[0.3em] whitespace-nowrap rounded-full border border-rule bg-bg-subtle px-[0.55em] py-[0.08em] leading-[1.3] align-baseline">
+      {children}
+    </span>
+  );
+}
+
+/* Inline brand marks; spacing from the word comes from the pill's gap. */
+const wrap = "inline-block shrink-0 leading-none";
 
 export function GoogleIcon() {
   return (
-    <span className={`${wrap} align-[-0.13em]`}>
+    <span className={wrap}>
       <img
         src="/Google_Favicon_2025.svg.webp"
         alt=""
@@ -20,7 +35,7 @@ export function GoogleIcon() {
    shapes inside (the PNG itself is trimmed and transparent). */
 export function EdgeGalleryIcon() {
   return (
-    <span className={`${wrap} align-[-0.12em] ml-[5px]`}>
+    <span className={wrap}>
       <span className="block h-[1em] w-[1em] rounded-[0.26em] bg-white p-[0.15em] ring-1 ring-rule">
         <img
           src="/galleryIcon.png"

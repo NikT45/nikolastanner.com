@@ -17,10 +17,10 @@
 
   position: relative;
   display: inline-block;
-  vertical-align: -1px;
+  flex-shrink: 0; /* lives inside an IconPill flex row, which centres it on the text */
   width: 22px;
   height: var(--icon-h);
-  margin: 0 0 0 1px;
+  margin: 0;
   cursor: pointer;
   border: 0;
   background: none;
