@@ -1,4 +1,5 @@
 import CardFan from "@/components/CardFan";
+import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
 import { EdgeGalleryIcon, GoogleIcon, IconPill } from "@/components/InlineIcon";
@@ -162,9 +163,12 @@ export default function Home() {
           <div className="flex flex-col gap-[18px]">
             <div className="flex items-baseline gap-5">
               <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">email</span>
-              <a href="mailto:ntanner@fordham.edu" className="text-[0.92rem] text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
-                ntanner@fordham.edu
-              </a>
+              <span className="inline-flex items-center gap-1.5">
+                <a href="mailto:ntanner@fordham.edu" className="text-[0.92rem] text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent">
+                  ntanner@fordham.edu
+                </a>
+                <CopyButton text="ntanner@fordham.edu" label="copy email" />
+              </span>
             </div>
             <div className="flex items-baseline gap-5">
               <span className="text-[0.875rem] tracking-[0.18em] text-text-dim w-20 shrink-0">github</span>
