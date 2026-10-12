@@ -1,4 +1,4 @@
-import CardFan from "@/components/CardFan";
+// import CardFan from "@/components/CardFan"; // re-enable with the card fan below
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
@@ -73,47 +73,56 @@ export default function Home() {
           </div>
           */}
 
+          {/* Generalist card fan — uncomment to show
+          <IconPill>
+            generalist
+            <CardFan
+              label="see what i've been up to"
+              cards={[
+                {
+                  caption: "music",
+                  images: ["/generalist/music-1.webp", "/generalist/music-2.webp", "/generalist/music-3.webp"],
+                },
+                {
+                  caption: "design",
+                  images: ["/generalist/design-3.webp", "/generalist/design-1.webp", "/generalist/design-2.webp"],
+                },
+                {
+                  caption: "jewelry",
+                  images: [
+                    "/generalist/jewelry-1.webp",
+                    "/generalist/jewelry-2.webp",
+                    "/generalist/jewelry-3.webp",
+                    "/generalist/jewelry-4.webp",
+                  ],
+                },
+              ]}
+            />
+          </IconPill>
+          */}
+
           <p className="w-full text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
-            <IconPill>
-              generalist
-              <CardFan
-                label="see what i've been up to"
-                cards={[
-                  {
-                    caption: "music",
-                    images: ["/generalist/music-1.webp", "/generalist/music-2.webp", "/generalist/music-3.webp"],
-                  },
-                  {
-                    caption: "design",
-                    images: ["/generalist/design-3.webp", "/generalist/design-1.webp", "/generalist/design-2.webp"],
-                  },
-                  {
-                    caption: "jewelry",
-                    images: [
-                      "/generalist/jewelry-1.webp",
-                      "/generalist/jewelry-2.webp",
-                      "/generalist/jewelry-3.webp",
-                      "/generalist/jewelry-4.webp",
-                    ],
-                  },
-                ]}
-              />
-            </IconPill>
-            , interested in design, optimistic about the future. previously
-            interned at{" "}
+            i build software and care about how it feels to use. prev shipped
+            an on-device ai app at{" "}
             <IconPill>
               google
               <GoogleIcon />
             </IconPill>{" "}
-            where i got to build an ai consumer product end to end for the{" "}
-            <span>
-              ai edge gallery{" "}
-              <IconPill>
-                team
-                <EdgeGalleryIcon />
-              </IconPill>
-              .
-            </span>
+            on the{" "}
+            <IconPill>
+              ai edge gallery
+              <EdgeGalleryIcon />
+            </IconPill>{" "}
+            team. now building{" "}
+            <a
+              href="https://crestnotes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent"
+            >
+              crestnotes
+            </a>
+            .
           </p>
         </section>
 
