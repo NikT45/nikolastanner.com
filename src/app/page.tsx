@@ -113,16 +113,7 @@ export default function Home() {
               ai edge gallery
               <EdgeGalleryIcon />
             </IconPill>{" "}
-            team. now building{" "}
-            <a
-              href="https://crestnotes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text no-underline border-b border-underline pb-px transition-colors duration-200 hover:text-accent hover:border-accent"
-            >
-              crestnotes
-            </a>
-            .
+            team. now building consumer apps.
           </p>
         </section>
 
