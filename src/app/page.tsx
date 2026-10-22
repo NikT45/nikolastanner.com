@@ -3,7 +3,7 @@ import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
 import { EdgeGalleryIcon, GoogleIcon, IconPill } from "@/components/InlineIcon";
-import ProjectRow, { type Project } from "@/components/ProjectRow";
+import ProjectTile, { type ProjectTileData } from "@/components/ProjectTile";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
 
@@ -131,24 +131,38 @@ export default function Home() {
 
         <section id="projects" className="scroll-mt-18 border-t border-rule pt-14">
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">projects</p>
-          <div className="flex flex-col gap-16">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
             {([
+              {
+                name: "nimbit",
+                desc: "chrome extension that finishes your emails as you type. ghost-text completions you accept with tab",
+                video: "/projects/motion/nimbit.mp4",
+                poster: "/projects/motion/nimbit.jpg",
+                href: "https://www.usenimbit.com",
+              },
+              {
+                name: "bond",
+                desc: "one question a day for couples. both answer, seal, then read each other. native swiftui",
+                video: "/projects/motion/bond.mp4",
+                poster: "/projects/motion/bond.jpg",
+                href: "https://bondcouples.com",
+              },
               {
                 name: "crestnotes",
                 desc: "meeting tool for customer success. records locally so no bot joins the call, then drafts your follow-up email",
-                bg: "/ProjectBG1.png",
-                shot: "/CrestnotesNew.png",
+                video: "/projects/motion/crestnotes.mp4",
+                poster: "/projects/motion/crestnotes.jpg",
                 href: "https://crestnotes.com",
               },
               {
                 name: "mavn",
                 desc: "voice agent that books doctor visits and orders meds on doordash by driving a real browser. figma make challenge winner",
-                bg: "/ProjectBG2.png",
-                shot: "/MavnNew.png",
+                video: "/projects/motion/mavn.mp4",
+                poster: "/projects/motion/mavn.jpg",
                 href: "https://devpost.com/software/mavn",
               },
-            ] as Project[]).map((p, i) => (
-              <ProjectRow key={p.name} project={p} flip={i % 2 === 1} />
+            ] as ProjectTileData[]).map((p) => (
+              <ProjectTile key={p.name} project={p} />
             ))}
           </div>
         </section>
