@@ -2,8 +2,9 @@ import CardFan from "@/components/CardFan";
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HorseAnimation from "@/components/HorseAnimation";
+import ImageReveal from "@/components/ImageReveal";
 import { EdgeGalleryIcon, GoogleIcon, IconPill } from "@/components/InlineIcon";
-import ProjectTile, { type ProjectTileData } from "@/components/ProjectTile";
+import ProjectsSplit, { type SplitProject } from "@/components/ProjectsSplit";
 import Tooltip from "@/components/Tooltip";
 import WorkRow from "@/components/WorkRow";
 
@@ -99,8 +100,18 @@ export default function Home() {
                 ]}
               />
             </IconPill>
-            , interested in design, optimistic about the future. previously
-            interned at{" "}
+            , interested in design, optimistic about the future. two years ago
+            i made{" "}
+            <ImageReveal
+              src="/decision-chat.svg"
+              alt="the message i sent two years ago"
+              caption="the text that started it · 2024"
+              width={560}
+              height={420}
+            >
+              the best decision of my life
+            </ImageReveal>
+            . previously interned at{" "}
             <IconPill>
               google
               <GoogleIcon />
@@ -130,41 +141,35 @@ export default function Home() {
         </section>
 
         <section id="projects" className="scroll-mt-18 border-t border-rule pt-14">
-          <p className="text-[1.4rem] font-light text-accent-deep mb-10">projects</p>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
-            {([
+          <ProjectsSplit
+            heading="projects"
+            projects={[
               {
                 name: "nimbit",
                 desc: "chrome extension that finishes your emails as you type. ghost-text completions you accept with tab",
-                video: "/projects/motion/nimbit.mp4",
-                poster: "/projects/motion/nimbit.jpg",
+                video: "/projects/final/nimbit.mp4",
+                poster: "/projects/final/nimbit.jpg",
                 href: "https://www.usenimbit.com",
+                linkLabel: "usenimbit.com",
               },
               {
                 name: "bond",
                 desc: "one question a day for couples. both answer, seal, then read each other. native swiftui",
-                video: "/projects/motion/bond.mp4",
-                poster: "/projects/motion/bond.jpg",
+                video: "/projects/final/bond.mp4",
+                poster: "/projects/final/bond.jpg",
                 href: "https://bondcouples.com",
+                linkLabel: "bondcouples.com",
               },
               {
                 name: "crestnotes",
                 desc: "meeting tool for customer success. records locally so no bot joins the call, then drafts your follow-up email",
-                video: "/projects/motion/crestnotes.mp4",
-                poster: "/projects/motion/crestnotes.jpg",
+                video: "/projects/final/crestnotes.mp4",
+                poster: "/projects/final/crestnotes.jpg",
                 href: "https://crestnotes.com",
+                linkLabel: "crestnotes.com",
               },
-              {
-                name: "mavn",
-                desc: "voice agent that books doctor visits and orders meds on doordash by driving a real browser. figma make challenge winner",
-                video: "/projects/motion/mavn.mp4",
-                poster: "/projects/motion/mavn.jpg",
-                href: "https://devpost.com/software/mavn",
-              },
-            ] as ProjectTileData[]).map((p) => (
-              <ProjectTile key={p.name} project={p} />
-            ))}
-          </div>
+            ] satisfies SplitProject[]}
+          />
         </section>
 
         {/* Rule is hidden on mobile: the horse sits above this section's top

@@ -25,6 +25,8 @@
   --color-rule: rgba(26, 15, 30, 0.12);
   --color-underline: rgba(25, 92, 132, 0.28);
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
+  /* strong ease-out for entrances and exits */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 html {
