@@ -12,13 +12,16 @@ export default function Home() {
   return (
     <div className="relative isolate flex min-h-screen flex-col items-center px-6">
       <DiaGradient />
-      <img
-        src="/bgAssetNewNoise.png"
-        alt=""
+      {/* Sky band: pure CSS gradients (see .sky in globals.css), kept at the
+          old image's 2466x924 aspect so it sits the same on every width. */}
+      <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 z-0 w-screen -translate-x-1/2 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
+        className="sky pointer-events-none absolute inset-x-0 top-0 z-0 h-[37.5vw] max-h-[540px]"
       />
       <aside className="relative z-10 flex w-full max-w-[640px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
+        {/* Masthead: identity on the left, a short contact column on the
+            right. Labels only; the full links live in "reach out" below. */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="font-light text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-text group cursor-default">
             nik<span className="inline-block overflow-hidden whitespace-nowrap align-bottom max-w-[3em] opacity-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-w-0 group-hover:opacity-0">olas</span> tanner
@@ -40,6 +43,24 @@ export default function Home() {
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
             prev swe intern @ <span className="text-accent-deep">google</span>
           </p>
+        </div>
+        <nav
+          aria-label="contact"
+          className="flex flex-row flex-wrap items-center gap-x-5 gap-y-2 sm:flex-col sm:items-end sm:gap-y-2.5 sm:pt-1"
+        >
+          <span className="inline-flex items-center gap-1">
+            <a href="mailto:ntanner@fordham.edu" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+              email
+            </a>
+            <CopyButton text="ntanner@fordham.edu" label="copy email" />
+          </span>
+          <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+            github
+          </a>
+          <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+            linkedin
+          </a>
+        </nav>
         </div>
         {/* <nav>
           <ul className="list-none flex flex-row gap-7 p-0 m-0">
@@ -177,7 +198,7 @@ export default function Home() {
         <section id="contact" className="scroll-mt-18 relative border-rule pt-14 sm:border-t">
           <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
-            find me
+            reach out
           </p>
           <div className="flex flex-col gap-[18px]">
             <div className="flex items-baseline gap-5">

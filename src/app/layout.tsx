@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import BottomBlur from "@/components/BottomBlur";
+import ThemeToggle from "@/components/ThemeToggle";
+import DiaTuner from "@/components/DiaTuner";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -40,9 +42,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={figtree.variable}>
+    <html lang="en" className={figtree.variable} suppressHydrationWarning>
+      <head>
+        {/* Resolve the theme before first paint: a saved choice wins, then
+            the OS preference. Runs inline so there is no flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})()`,
+          }}
+        />
+      </head>
       <body className="bg-bg text-text font-light min-h-screen">
         {children}
+        <ThemeToggle />
+        {/* dev-only footer gradient tuner; stripped from production builds */}
+        {process.env.NODE_ENV === "development" && <DiaTuner />}
         <BottomBlur />
         <Analytics />
       </body>

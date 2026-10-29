@@ -24,9 +24,85 @@
      rather than a hue jump. */
   --color-rule: rgba(26, 15, 30, 0.12);
   --color-underline: rgba(25, 92, 132, 0.28);
+  /* keyword pill behind inline icons in the bio */
+  --color-pill: #e2d8d2;
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
   /* strong ease-out for entrances and exits */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Theme is an explicit attribute set before first paint by the inline
+   script in layout.tsx, so `dark:` never flashes and never depends on the
+   OS setting alone. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Header sky, three gradient layers (top layer first): a vertical fade into
+   the page, a wide ellipse at top centre, and a horizontal band across the
+   top. Light is fitted to the old bgAssetNewNoise.png; dark keeps the same
+   shape with the blue inside the ellipse and the edges falling to the page.
+   Percent geometry so it scales with the band. */
+:root {
+  --sky:
+    linear-gradient(to bottom, rgba(248, 244, 241, 0) 0%, rgba(248, 244, 241, 0.11) 9%, rgba(248, 244, 241, 0.16) 18%, rgba(248, 244, 241, 0.22) 27%, rgba(248, 244, 241, 0.33) 36%, rgba(248, 244, 241, 0.5) 45%, rgba(248, 244, 241, 0.69) 54%, rgba(248, 244, 241, 0.83) 63%, rgba(248, 244, 241, 0.9) 80%, #f8f4f1 100%),
+    radial-gradient(77.36% 45.37% at 50% 45.19%, #d1dce1 0%, #d1dce1 25%, rgba(209, 220, 225, 0.76) 50%, rgba(209, 220, 225, 0.34) 75%, rgba(209, 220, 225, 0) 100%),
+    linear-gradient(to right, #3a7394 0%, #5588a6 12.5%, #75a2bc 25%, #8db7cf 37.5%, #96bed6 50%, #8db7cf 62.5%, #75a2bc 75%, #5588a6 87.5%, #3a7394 100%);
+}
+
+:root[data-theme="dark"] {
+  /* Mirror of the light sky: blue stays at the edges and corners, the
+     centre and the ellipse fall toward the dark page. */
+  --sky:
+    linear-gradient(to bottom, rgba(15, 22, 27, 0) 0%, rgba(15, 22, 27, 0.11) 9%, rgba(15, 22, 27, 0.16) 18%, rgba(15, 22, 27, 0.22) 27%, rgba(15, 22, 27, 0.33) 36%, rgba(15, 22, 27, 0.5) 45%, rgba(15, 22, 27, 0.75) 54%, rgba(15, 22, 27, 0.9) 63%, rgba(15, 22, 27, 0.98) 74%, #0f161b 85%),
+    radial-gradient(77.36% 60% at 50% 45.19%, #121b22 0%, #121b22 25%, rgba(18, 27, 34, 0.76) 50%, rgba(18, 27, 34, 0.34) 75%, rgba(18, 27, 34, 0) 100%),
+    linear-gradient(to right, #35678a 0%, #2e5b7b 12.5%, #27506d 25%, #214560 37.5%, #1d3e57 50%, #214560 62.5%, #27506d 75%, #2e5b7b 87.5%, #35678a 100%);
+}
+
+.sky {
+  background-image: var(--sky);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Dark-mode footer bars (see DiaGradient.tsx): fill and masks are set
+   inline from the settings; only the mask composite lives here. */
+.dia-bar {
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* Bottom "dia" gradient stops, bottom to top. Dark values come from the
+   Figma "v2 · B · sticky split · dark" frame. */
+:root {
+  --dia-0: #040f15;
+  --dia-1: #040f15;
+  --dia-2: #195c84;
+  --dia-3: #4a91bc;
+  --dia-4: #5fa8d3;
+  --dia-5: #edd3bf;
+  --dia-6: #f8f4f1;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #0f161b;
+  --color-bg-subtle: #19232b;
+  --color-text: #f3eee9;
+  --color-text-mid: #d6cec7;
+  --color-text-dim: #7fa6bc;
+  --color-accent: #7fbee3;
+  --color-accent-deep: #7fbee3;
+  --color-rule: rgba(255, 255, 255, 0.1);
+  --color-underline: rgba(127, 190, 227, 0.28);
+  --color-pill: rgba(127, 190, 227, 0.12);
+  /* "blue flame" variant D: the accent as the core, rising from a pale
+     lit base at the page edge into the dark background. */
+  --dia-0: #eef7fb;
+  --dia-1: #c6e4f3;
+  --dia-2: #7fbee3;
+  --dia-3: #4a74bc;
+  --dia-4: #195c84;
+  --dia-5: #15283a;
+  --dia-6: #0f161b;
+  color-scheme: dark;
 }
 
 html {
@@ -36,6 +112,9 @@ html {
 
 body {
   overscroll-behavior: none;
+  transition:
+    background-color 300ms var(--ease-out),
+    color 300ms var(--ease-out);
 }
 
 ::selection {
