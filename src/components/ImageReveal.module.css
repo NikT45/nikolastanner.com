@@ -100,10 +100,32 @@
   color: var(--color-text-dim);
 }
 
+/* Phones: an inline-anchored card can land against the screen edge, so
+   centre it in the viewport instead. */
+@media (max-width: 640px) {
+  .card {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: min(320px, 100vw - 48px);
+    transform-origin: center;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  .root[data-open="true"] .card {
+    transform: translate(-50%, -50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card {
     transform: none;
     transition: opacity 160ms ease;
+  }
+  @media (max-width: 640px) {
+    .card,
+    .root[data-open="true"] .card {
+      transform: translate(-50%, -50%);
+    }
   }
   .thumb,
   .root[data-open="true"] .thumb {

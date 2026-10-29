@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { Figtree, Noto_Serif_SC } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import BottomBlur from "@/components/BottomBlur";
 import ThemeToggle from "@/components/ThemeToggle";
-import DiaTuner from "@/components/DiaTuner";
 import "./globals.css";
 
 const figtree = Figtree({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-figtree",
+});
+
+/* Only the Chinese name and idiom use this, so load the light weight only. */
+const notoSerifSC = Noto_Serif_SC({
+  weight: ["300"],
+  subsets: ["latin"],
+  variable: "--font-noto-serif-sc",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -42,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={figtree.variable} suppressHydrationWarning>
+    <html lang="en" className={`${figtree.variable} ${notoSerifSC.variable}`} suppressHydrationWarning>
       <head>
         {/* Resolve the theme before first paint: a saved choice wins, then
             the OS preference. Runs inline so there is no flash. */}
@@ -55,8 +63,6 @@ export default function RootLayout({
       <body className="bg-bg text-text font-light min-h-screen">
         {children}
         <ThemeToggle />
-        {/* dev-only footer gradient tuner; stripped from production builds */}
-        {process.env.NODE_ENV === "development" && <DiaTuner />}
         <BottomBlur />
         <Analytics />
       </body>

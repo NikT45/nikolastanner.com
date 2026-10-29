@@ -9,6 +9,8 @@ export default function Tooltip({
   align = "left",
   open: openProp,
   bgImage,
+  bare = false,
+  width = 260,
 }: {
   content: ReactNode;
   children: ReactNode;
@@ -16,6 +18,9 @@ export default function Tooltip({
   align?: "left" | "right";
   open?: boolean;
   bgImage?: string;
+  /* bare: the content draws its own card; the bubble only clips and casts */
+  bare?: boolean;
+  width?: number;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
   const isControlled = openProp !== undefined;
@@ -58,7 +63,8 @@ export default function Tooltip({
       <span
         role="tooltip"
         aria-hidden={!open}
-        className={`pointer-events-none absolute ${bubbleAlign} top-[calc(100%+12px)] z-20 w-[260px] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        style={{ width }}
+        className={`pointer-events-none absolute ${bubbleAlign} top-[calc(100%+12px)] z-20 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           open
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 -translate-y-1 scale-[0.97]"
@@ -68,7 +74,11 @@ export default function Tooltip({
           aria-hidden="true"
           className={`absolute ${arrowAlign} -top-[5px] w-2.5 h-2.5 bg-bg border-l border-t border-rule rotate-45 rounded-[2px]`}
         />
-        <span className="relative block overflow-hidden bg-bg border border-rule rounded-lg shadow-[0_10px_30px_-8px_rgba(26,15,30,0.2),0_2px_6px_-2px_rgba(26,15,30,0.08)] px-4 py-3 text-[0.875rem] leading-[1.7] text-text-mid tracking-[0.02em]">
+        <span
+          className={`relative block overflow-hidden rounded-lg border border-rule bg-bg shadow-[0_10px_30px_-8px_rgba(26,15,30,0.2),0_2px_6px_-2px_rgba(26,15,30,0.08)] ${
+            bare ? "" : "px-4 py-3 text-[0.875rem] leading-[1.7] tracking-[0.02em] text-text-mid"
+          }`}
+        >
           {bgImage && (
             <span
               aria-hidden="true"

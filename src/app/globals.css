@@ -25,7 +25,7 @@
   --color-rule: rgba(26, 15, 30, 0.12);
   --color-underline: rgba(25, 92, 132, 0.28);
   /* keyword pill behind inline icons in the bio */
-  --color-pill: #e2d8d2;
+  --color-pill: rgba(25, 92, 132, 0.1);
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
   /* strong ease-out for entrances and exits */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -39,22 +39,29 @@
 /* Header sky, three gradient layers (top layer first): a vertical fade into
    the page, a wide ellipse at top centre, and a horizontal band across the
    top. Light is fitted to the old bgAssetNewNoise.png; dark keeps the same
-   shape with the blue inside the ellipse and the edges falling to the page.
-   Percent geometry so it scales with the band. */
+   shape with the blue at the edges and the centre falling to the page. The
+   colours are registered custom properties (below), so the sky fades with
+   the rest of the theme instead of switching on the first frame. */
 :root {
   --sky:
-    linear-gradient(to bottom, rgba(248, 244, 241, 0) 0%, rgba(248, 244, 241, 0.11) 9%, rgba(248, 244, 241, 0.16) 18%, rgba(248, 244, 241, 0.22) 27%, rgba(248, 244, 241, 0.33) 36%, rgba(248, 244, 241, 0.5) 45%, rgba(248, 244, 241, 0.69) 54%, rgba(248, 244, 241, 0.83) 63%, rgba(248, 244, 241, 0.9) 80%, #f8f4f1 100%),
-    radial-gradient(77.36% 45.37% at 50% 45.19%, #d1dce1 0%, #d1dce1 25%, rgba(209, 220, 225, 0.76) 50%, rgba(209, 220, 225, 0.34) 75%, rgba(209, 220, 225, 0) 100%),
-    linear-gradient(to right, #3a7394 0%, #5588a6 12.5%, #75a2bc 25%, #8db7cf 37.5%, #96bed6 50%, #8db7cf 62.5%, #75a2bc 75%, #5588a6 87.5%, #3a7394 100%);
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 0%, transparent) 0%, color-mix(in srgb, var(--color-bg) 11%, transparent) 9%, color-mix(in srgb, var(--color-bg) 16%, transparent) 18%, color-mix(in srgb, var(--color-bg) 22%, transparent) 27%, color-mix(in srgb, var(--color-bg) 33%, transparent) 36%, color-mix(in srgb, var(--color-bg) 50%, transparent) 45%, color-mix(in srgb, var(--color-bg) 69%, transparent) 54%, color-mix(in srgb, var(--color-bg) 85%, transparent) 63%, color-mix(in srgb, var(--color-bg) 95%, transparent) 74%, var(--color-bg) 88%),
+    radial-gradient(77.36% 52% at 50% 45.19%, var(--sky-ell) 0%, var(--sky-ell) 25%, color-mix(in srgb, var(--sky-ell) 76%, transparent) 50%, color-mix(in srgb, var(--sky-ell) 34%, transparent) 75%, color-mix(in srgb, var(--sky-ell) 0%, transparent) 100%),
+    linear-gradient(to right, var(--sky-b0) 0%, var(--sky-b1) 12.5%, var(--sky-b2) 25%, var(--sky-b3) 37.5%, var(--sky-b4) 50%, var(--sky-b3) 62.5%, var(--sky-b2) 75%, var(--sky-b1) 87.5%, var(--sky-b0) 100%);
+  --sky-ell: #d1dce1;
+  --sky-b0: #3a7394;
+  --sky-b1: #5588a6;
+  --sky-b2: #75a2bc;
+  --sky-b3: #8db7cf;
+  --sky-b4: #96bed6;
 }
 
 :root[data-theme="dark"] {
-  /* Mirror of the light sky: blue stays at the edges and corners, the
-     centre and the ellipse fall toward the dark page. */
-  --sky:
-    linear-gradient(to bottom, rgba(15, 22, 27, 0) 0%, rgba(15, 22, 27, 0.11) 9%, rgba(15, 22, 27, 0.16) 18%, rgba(15, 22, 27, 0.22) 27%, rgba(15, 22, 27, 0.33) 36%, rgba(15, 22, 27, 0.5) 45%, rgba(15, 22, 27, 0.75) 54%, rgba(15, 22, 27, 0.9) 63%, rgba(15, 22, 27, 0.98) 74%, #0f161b 85%),
-    radial-gradient(77.36% 60% at 50% 45.19%, #121b22 0%, #121b22 25%, rgba(18, 27, 34, 0.76) 50%, rgba(18, 27, 34, 0.34) 75%, rgba(18, 27, 34, 0) 100%),
-    linear-gradient(to right, #35678a 0%, #2e5b7b 12.5%, #27506d 25%, #214560 37.5%, #1d3e57 50%, #214560 62.5%, #27506d 75%, #2e5b7b 87.5%, #35678a 100%);
+  --sky-ell: #121b22;
+  --sky-b0: #35678a;
+  --sky-b1: #2e5b7b;
+  --sky-b2: #27506d;
+  --sky-b3: #214560;
+  --sky-b4: #1d3e57;
 }
 
 .sky {
@@ -63,15 +70,8 @@
   background-size: 100% 100%;
 }
 
-/* Dark-mode footer bars (see DiaGradient.tsx): fill and masks are set
-   inline from the settings; only the mask composite lives here. */
-.dia-bar {
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-
-/* Bottom "dia" gradient stops, bottom to top. Dark values come from the
-   Figma "v2 · B · sticky split · dark" frame. */
+/* Footer "dia" gradient band colours, bottom to top (see DiaGradient.tsx).
+   Dark values are the "blue flame" variant D. */
 :root {
   --dia-0: #040f15;
   --dia-1: #040f15;
@@ -105,6 +105,172 @@
   color-scheme: dark;
 }
 
+/* Theme colours are registered as <color> properties so that a theme
+   switch interpolates every use of them, gradients included, instead of
+   only the body background. */
+@property --color-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f8f4f1;
+}
+@property --color-bg-subtle {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ede5e0;
+}
+@property --color-text {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #060C10;
+}
+@property --color-text-mid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0D1921;
+}
+@property --color-text-dim {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #83AEC5;
+}
+@property --color-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #195C84;
+}
+@property --color-accent-deep {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #195C84;
+}
+@property --color-rule {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(26, 15, 30, 0.12);
+}
+@property --color-underline {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(25, 92, 132, 0.28);
+}
+@property --color-pill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(25, 92, 132, 0.1);
+}
+@property --dia-0 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #040f15;
+}
+@property --dia-1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #040f15;
+}
+@property --dia-2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #195c84;
+}
+@property --dia-3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4a91bc;
+}
+@property --dia-4 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #5fa8d3;
+}
+@property --dia-5 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #edd3bf;
+}
+@property --dia-6 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f8f4f1;
+}
+@property --sky-ell {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #d1dce1;
+}
+@property --sky-b0 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #3a7394;
+}
+@property --sky-b1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #5588a6;
+}
+@property --sky-b2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #75a2bc;
+}
+@property --sky-b3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8db7cf;
+}
+@property --sky-b4 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #96bed6;
+}
+
+:root {
+  /* Surfaces and the mid-luminance blues fade. The two body text colours
+     swap luminance with the background, so a fade makes them vanish into
+     it halfway; they snap at the midpoint instead, where either value is
+     readable against the mid-tone. */
+  transition:
+    --color-bg 300ms ease-in-out,
+    --color-bg-subtle 300ms ease-in-out,
+    --color-text 0s 150ms,
+    --color-text-mid 0s 150ms,
+    --color-text-dim 300ms ease-in-out,
+    --color-accent 300ms ease-in-out,
+    --color-accent-deep 300ms ease-in-out,
+    --color-rule 300ms ease-in-out,
+    --color-underline 300ms ease-in-out,
+    --color-pill 300ms ease-in-out,
+    --dia-0 300ms ease-in-out,
+    --dia-1 300ms ease-in-out,
+    --dia-2 300ms ease-in-out,
+    --dia-3 300ms ease-in-out,
+    --dia-4 300ms ease-in-out,
+    --dia-5 300ms ease-in-out,
+    --dia-6 300ms ease-in-out,
+    --sky-ell 300ms ease-in-out,
+    --sky-b0 300ms ease-in-out,
+    --sky-b1 300ms ease-in-out,
+    --sky-b2 300ms ease-in-out,
+    --sky-b3 300ms ease-in-out,
+    --sky-b4 300ms ease-in-out;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+}
+
+/* While a theme switch is in flight, suspend every element's own colour
+   transition (the hover fades on links and rows). Those would keep
+   restarting against the moving variable and trail the root fade. */
+:root[data-theme-switching] *,
+:root[data-theme-switching] *::before,
+:root[data-theme-switching] *::after {
+  transition-duration: 0s !important;
+}
+
 html {
   scroll-behavior: smooth;
   overscroll-behavior: none;
@@ -112,9 +278,6 @@ html {
 
 body {
   overscroll-behavior: none;
-  transition:
-    background-color 300ms var(--ease-out),
-    color 300ms var(--ease-out);
 }
 
 ::selection {

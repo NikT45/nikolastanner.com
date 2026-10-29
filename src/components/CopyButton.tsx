@@ -2,7 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function CopyButton({ text, label = "copy" }: { text: string; label?: string }) {
+export default function CopyButton({
+  text,
+  label = "copy",
+  className = "text-text-dim hover:text-accent focus-visible:text-accent",
+}: {
+  text: string;
+  label?: string;
+  /* colour classes: default, hover and focus */
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -27,7 +36,7 @@ export default function CopyButton({ text, label = "copy" }: { text: string; lab
       onClick={copy}
       aria-label={copied ? "copied" : label}
       title={copied ? "copied" : label}
-      className="inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md text-text-dim transition-colors duration-200 hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+      className={`inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 focus-visible:outline-none ${className}`}
     >
       {copied ? (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

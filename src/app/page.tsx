@@ -1,24 +1,29 @@
-import CardFan from "@/components/CardFan";
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
+import HangingBadge from "@/components/HangingBadgeLoader";
 import HorseAnimation from "@/components/HorseAnimation";
 import ImageReveal from "@/components/ImageReveal";
-import { EdgeGalleryIcon, GoogleIcon, IconPill } from "@/components/InlineIcon";
+import { EdgeGalleryIcon, GoogleIcon, IconPill, YouTubeIcon } from "@/components/InlineIcon";
 import ProjectsSplit, { type SplitProject } from "@/components/ProjectsSplit";
+import NameCard from "@/components/NameCard";
 import Tooltip from "@/components/Tooltip";
-import WorkRow from "@/components/WorkRow";
+import WorkRow, { type WorkEntry } from "@/components/WorkRow";
 
 export default function Home() {
   return (
     <div className="relative isolate flex min-h-screen flex-col items-center px-6">
       <DiaGradient />
+      {/* The guest badge hangs over the footer gradient: centred in the empty
+          space at the bottom on small screens, bottom-left beside the column
+          on desktop. It overlays, so it costs no vertical room. */}
+      <HangingBadge className="absolute bottom-0 left-1/2 z-10 h-[360px] w-[360px] -translate-x-1/2 lg:bottom-[max(0px,calc(6vh-150px))] lg:left-[calc(max(24px,50vw-700px)-100px)] lg:h-[520px] lg:w-[520px] lg:translate-x-0" />
       {/* Sky band: pure CSS gradients (see .sky in globals.css), kept at the
           old image's 2466x924 aspect so it sits the same on every width. */}
       <div
         aria-hidden="true"
         className="sky pointer-events-none absolute inset-x-0 top-0 z-0 h-[37.5vw] max-h-[540px]"
       />
-      <aside className="relative z-10 flex w-full max-w-[640px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
+      <aside className="relative z-20 flex w-full max-w-[640px] flex-col gap-5 border-b border-rule pb-12 pt-16 sm:pb-16 sm:pt-24">
         {/* Masthead: identity on the left, a short contact column on the
             right. Labels only; the full links live in "reach out" below. */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
@@ -27,21 +32,12 @@ export default function Home() {
             nik<span className="inline-block overflow-hidden whitespace-nowrap align-bottom max-w-[3em] opacity-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-w-0 group-hover:opacity-0">olas</span> tanner
           </h1>
           <p className="mt-1.5 text-[1.05rem] tracking-[0.08em] text-accent-deep">
-            <Tooltip
-              bgImage="/newNameBg.png"
-              content={
-                <>
-                  my chinese name &mdash; derived from the idiom{" "}
-                  <em className="italic text-accent-deep">旭日东升</em>,
-                  {" "}&ldquo;the rising sun ascends in the east&rdquo;
-                </>
-              }
-            >
+            <Tooltip bare width={360} content={<NameCard />}>
               唐旭东
             </Tooltip>
           </p>
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
-            prev swe intern @ <span className="text-accent-deep">google</span>
+            incoming swe @ <span className="text-accent-deep">google</span>
           </p>
         </div>
         <nav
@@ -49,15 +45,19 @@ export default function Home() {
           className="flex flex-row flex-wrap items-center gap-x-5 gap-y-2 sm:flex-col sm:items-end sm:gap-y-2.5 sm:pt-1"
         >
           <span className="inline-flex items-center gap-1">
-            <a href="mailto:ntanner@fordham.edu" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+            <a href="mailto:ntanner@fordham.edu" className="text-[0.875rem] tracking-[0.14em] text-accent no-underline transition-colors duration-200 hover:text-text">
               email
             </a>
-            <CopyButton text="ntanner@fordham.edu" label="copy email" />
+            <CopyButton
+              text="ntanner@fordham.edu"
+              label="copy email"
+              className="text-accent hover:text-text focus-visible:text-text"
+            />
           </span>
-          <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+          <a href="https://github.com/NikT45" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-accent no-underline transition-colors duration-200 hover:text-text">
             github
           </a>
-          <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+          <a href="https://linkedin.com/in/niktanner" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] tracking-[0.14em] text-accent no-underline transition-colors duration-200 hover:text-text">
             linkedin
           </a>
         </nav>
@@ -65,12 +65,12 @@ export default function Home() {
         {/* <nav>
           <ul className="list-none flex flex-row gap-7 p-0 m-0">
             <li>
-              <a href="#work" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+              <a href="#work" className="text-[0.875rem] tracking-[0.14em] text-accent no-underline transition-colors duration-200 hover:text-text">
                 work
               </a>
             </li>
             <li>
-              <a href="#contact" className="text-[0.875rem] tracking-[0.14em] text-text-dim no-underline transition-colors duration-200 hover:text-accent">
+              <a href="#contact" className="text-[0.875rem] tracking-[0.14em] text-accent no-underline transition-colors duration-200 hover:text-text">
                 contact
               </a>
             </li>
@@ -95,67 +95,57 @@ export default function Home() {
           </div>
           */}
 
-          <p className="w-full text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
-            <IconPill>
-              generalist
-              <CardFan
-                label="see what i've been up to"
-                cards={[
-                  {
-                    caption: "music",
-                    images: ["/generalist/music-1.webp", "/generalist/music-2.webp", "/generalist/music-3.webp"],
-                  },
-                  {
-                    caption: "design",
-                    images: ["/generalist/design-3.webp", "/generalist/design-1.webp", "/generalist/design-2.webp"],
-                  },
-                  {
-                    caption: "jewelry",
-                    images: [
-                      "/generalist/jewelry-1.webp",
-                      "/generalist/jewelry-2.webp",
-                      "/generalist/jewelry-3.webp",
-                      "/generalist/jewelry-4.webp",
-                    ],
-                  },
-                ]}
-              />
-            </IconPill>
-            , interested in design, optimistic about the future. two years ago
-            i made{" "}
-            <ImageReveal
-              src="/decision-chat.svg"
-              alt="the message i sent two years ago"
-              caption="the text that started it · 2024"
-              width={560}
-              height={420}
-            >
-              the best decision of my life
-            </ImageReveal>
-            . previously interned at{" "}
-            <IconPill>
-              google
-              <GoogleIcon />
-            </IconPill>{" "}
-            where i got to build an ai consumer product end to end for the{" "}
-            <span>
-              ai edge gallery{" "}
+          <div className="flex w-full flex-col gap-5 text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
+            <p>
+              incoming software engineer at{" "}
               <IconPill>
-                team
-                <EdgeGalleryIcon />
+                google
+                <GoogleIcon />
+              </IconPill>
+              , joining{" "}
+              <IconPill>
+                youtube
+                <YouTubeIcon />
               </IconPill>
               .
-            </span>
-          </p>
+            </p>
+            <p>
+              currently building consumer apps. previously interned on the{" "}
+              <IconPill>
+                ai edge gallery
+                <EdgeGalleryIcon />
+              </IconPill>{" "}
+              team, where i built a desktop ai app end to end.
+            </p>
+            <p>
+              <ImageReveal
+                src="/best-decision.webp"
+                alt="family chat: me saying i'm thinking of switching to computer science because studying business is boring"
+                caption="family chat · read the story"
+                width={800}
+                height={845}
+                href="/story"
+              >
+                used to be a business major lol
+              </ImageReveal>
+            </p>
+          </div>
         </section>
 
         <section id="work" className="scroll-mt-18 border-t border-rule pt-14">
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">work</p>
           <div className="flex flex-col">
             {([
-              { name: "google", desc: "swe intern, worked on ai edge gallery, a consumer app for on-device ai", year: "2026", months: "may – aug · 14 wks" },
+              {
+                name: "google",
+                year: "2027 · 2026",
+                roles: [
+                  { desc: "software engineer · youtube", when: "incoming · aug 2027", upcoming: true },
+                  { desc: "swe intern · ai edge gallery, a consumer app for on-device ai", when: "may – aug 2026 · 14 wks" },
+                ],
+              },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 12 wks" },
-            ] as { name: string; desc: string; year: string; months?: string }[]).map((p) => (
+            ] as WorkEntry[]).map((p) => (
               <WorkRow key={p.name} entry={p} />
             ))}
           </div>
