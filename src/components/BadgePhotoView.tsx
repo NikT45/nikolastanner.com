@@ -159,9 +159,12 @@ export default function BadgePhotoView({
     const cx = (vw - cw) / 2,
       cy = (vh - ch) / 2;
     // photo rect (square), and the badge quads inside it
-    const S = Math.min(vw * 0.92, vh * 0.92, 900);
+    /* leave room under the photo for the caption: the square is capped at
+       78% of the viewport height, and the pair is centred as a unit */
+    const CAP = 44;
+    const S = Math.min(vw * 0.92, vh * 0.78, 820);
     const px = (vw - S) / 2,
-      py = (vh - S) / 2;
+      py = (vh - S - CAP) / 2;
     const inPhoto = (q: Quad): Quad =>
       q.map(([x, y]) => [px + x * S, py + y * S]) as Quad;
     const photoTop = inPhoto(PHOTO_TOP),
@@ -187,7 +190,7 @@ export default function BadgePhotoView({
     el.blank.style.top = `${py}px`;
     el.blank.style.width = `${S}px`;
     el.blank.style.height = `${S}px`;
-    el.caption.style.top = `${py + S + 18}px`;
+    el.caption.style.top = `${py + S + 20}px`;
     // half elements are sized to the centre rect; the matrix maps from that box
     const hw = cw,
       hTop = ch * CREASE,
