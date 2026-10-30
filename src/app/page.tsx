@@ -37,12 +37,12 @@ export default function Home() {
             </Tooltip>
           </p>
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
-            incoming swe @{" "}
+            incoming swe @
             <IconPill>
               google
               <GoogleIcon />
             </IconPill>{" "}
-            on{" "}
+            on
             <IconPill>
               youtube
               <YouTubeIcon />
@@ -107,12 +107,12 @@ export default function Home() {
           <div className="flex w-full flex-col gap-5 text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
             {/* first line lives in the header tagline now
             <p>
-              incoming software engineer at{" "}
+              incoming software engineer at
               <IconPill>
                 google
                 <GoogleIcon />
               </IconPill>
-              , joining{" "}
+              , joining
               <IconPill>
                 youtube
                 <YouTubeIcon />
@@ -121,7 +121,7 @@ export default function Home() {
             </p>
             */}
             <p>
-              currently building consumer apps. previously interned on the{" "}
+              currently building consumer apps. previously interned on the
               <IconPill>
                 ai edge gallery
                 <EdgeGalleryIcon />

@@ -1,6 +1,4 @@
-"use client";
-
-import { useLayoutEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /* Wraps a word and its brand mark as one continuous pill. inline-flex with
    centred items keeps the icon on the text's vertical midpoint regardless of
@@ -8,36 +6,19 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
    was baseline-aligned). The tight line-height keeps the pill shorter than the
    paragraph's 1.75 line box so it never pushes lines apart. */
 export function IconPill({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  /* Optical alignment: when a pill happens to start a line, hang its left
-     padding into the margin so the word, not the capsule, lines up with
-     the column. Re-measured on resize and once fonts have loaded, since
-     both can change where lines break. */
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const block = el.closest("p") ?? el.parentElement;
-    if (!block) return;
-    const measure = () => {
-      el.style.marginLeft = "0px";
-      const pad = parseFloat(getComputedStyle(el).paddingLeft);
-      const atStart = Math.abs(el.getBoundingClientRect().left - block.getBoundingClientRect().left) < 1;
-      el.style.marginLeft = atStart ? `-${pad}px` : "0px";
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(block);
-    document.fonts?.ready.then(measure);
-    return () => ro.disconnect();
-  }, []);
-
   return (
-    <span
-      ref={ref}
-      className="inline-flex items-center gap-[0.3em] whitespace-nowrap rounded-full bg-pill pl-[0.56em] pr-[0.52em] pt-[0.04em] pb-[0.12em] leading-[1.3] align-baseline"
-    >
-      {children}
+    /* The left padding is a real space character inside the pill, widened
+       with word-spacing. Browsers drop a space at the start of a line, so a
+       pill that wraps to a new line starts flush with the column, with no
+       measurement and no flicker; mid-line the space reads as padding. The
+       outer span is plain inline so that space is a break opportunity; the
+       inner span keeps word and icon together. Callers must not put their
+       own space before the pill, or the two would collapse into one. */
+    <span className="rounded-full bg-pill pt-[0.04em] pr-[0.52em] pb-[0.12em] [word-spacing:0.31em] [box-decoration-break:slice]">
+      {" "}
+      <span className="inline-flex items-center gap-[0.3em] align-baseline leading-[1.3] whitespace-nowrap [word-spacing:0]">
+        {children}
+      </span>
     </span>
   );
 }
