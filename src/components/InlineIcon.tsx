@@ -7,16 +7,18 @@ import type { ReactNode } from "react";
    paragraph's 1.75 line box so it never pushes lines apart. */
 export function IconPill({ children }: { children: ReactNode }) {
   return (
-    /* The left padding is a real space character inside the pill, widened
-       with word-spacing. Browsers drop a space at the start of a line, so a
-       pill that wraps to a new line starts flush with the column, with no
-       measurement and no flicker; mid-line the space reads as padding. The
-       outer span is plain inline so that space is a break opportunity; the
-       inner span keeps word and icon together. Callers must not put their
-       own space before the pill, or the two would collapse into one. */
-    <span className="rounded-full bg-pill pt-[0.04em] pr-[0.52em] pb-[0.12em] [word-spacing:0.31em] [box-decoration-break:slice]">
+    /* Optical alignment with no measurement. The outer span holds one
+       space, widened by the pill's left padding; the inner span is the
+       visible pill with a matching negative left margin. Mid-line the two
+       cancel, so the pill sits one normal word gap after the text. When
+       the pill wraps to a new line the browser drops that space, and the
+       negative margin hangs the capsule into the margin so the word, not
+       the capsule, lines up with the column. The pill is always a single
+       fragment, so its corners stay round. Callers must not put their own
+       space before the pill, or the two spaces would collapse into one. */
+    <span className="[word-spacing:0.56em]">
       {" "}
-      <span className="inline-flex items-center gap-[0.3em] align-baseline leading-[1.3] whitespace-nowrap [word-spacing:0]">
+      <span className="inline-flex items-center gap-[0.3em] rounded-full bg-pill pt-[0.04em] pr-[0.52em] pb-[0.12em] pl-[0.56em] -ml-[0.56em] align-baseline leading-[1.3] whitespace-nowrap [word-spacing:0]">
         {children}
       </span>
     </span>
