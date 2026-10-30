@@ -3,8 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "the best decision of my life · nikolas tanner",
-  description:
-    "how i nearly got a business degree, and the day that changed it.",
+  description: "how i ended up switching to computer science.",
 };
 
 /* Long-form version of the bio's "best decision" link. Same column and
@@ -25,45 +24,21 @@ export default function Story() {
           &larr; back
         </Link>
 
-        <header className="flex flex-col gap-3">
+        <header>
           <h1 className="font-light text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.12] tracking-[-0.01em] text-text">
             the best decision of my life
           </h1>
-          <p className="text-[0.875rem] tracking-[0.1em] text-text-dim">
-            how i nearly got a business degree · 2024
-          </p>
         </header>
 
         <article className="flex flex-col gap-7 text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
           <p>
-            i strongly dislike college admissions. it has become a game. people try to game the system: if a
-            major is really sought after, it&rsquo;s not good to apply for that major. so you start studying
-            something you don&rsquo;t really want to.
+            i thought computer science was too hard for me, and that i wasn&rsquo;t smart enough. people
+            told me the same.
           </p>
 
           <p>
-            and in general, people in life will tell you that something is hard. if you believe them, you start
-            to think maybe you can&rsquo;t do it. if you haven&rsquo;t really done anything hard yet, someone
-            telling you something is hard is going to deter you. my freshman year ra was a computer science
-            major. i asked him whether i should switch, and he said &ldquo;oh, it&rsquo;s really hard, i
-            don&rsquo;t know.&rdquo; that&rsquo;s what it is: someone saying it&rsquo;s really hard, or
-            implying you can&rsquo;t do it, or that you need to be good at math, or good at logic, or whatever.
-            i think it&rsquo;s underestimated how much you can actually do and get done.
-          </p>
-
-          <p>
-            one of the interesting things is that once you actually see these places, companies like google,
-            once you&rsquo;re surrounded by the people you thought were untouchably smart, you realize that of
-            course there are genuinely impressive people, but they&rsquo;re not that different from you. you can
-            get extremely far, on par with most people, just by working hard and being passionate about it.
-          </p>
-
-          <p>
-            by the summer after freshman year i already disliked business and was doing computer science on the
-            side. but visiting google that summer was the turning point. the last straw. i visited my friend
-            who was interning there, and i couldn&rsquo;t think of a reason why these interns were smarter or
-            better than me. interacting with them, i didn&rsquo;t feel that way at all. that was a really big
-            moment: oh, maybe it is actually possible for me to get here.
+            visiting a friend interning at google was the final straw. the interns were good, but they
+            didn&rsquo;t feel like a different kind of person. i could see myself there.
           </p>
 
           <figure className="flex flex-col gap-3">
@@ -80,8 +55,8 @@ export default function Story() {
           </figure>
 
           <p>
-            i kept the visitor badge from that day and stuck it to my monitor. it stayed there for two years as
-            some sort of motivation. i didn&rsquo;t really think i would actually get there. but i did.
+            that summer i switched to computer science and stuck the guest badge to my monitor. it stayed
+            there for two years. i never expected to end up joining full-time.
           </p>
 
           <figure className="flex flex-col gap-3">

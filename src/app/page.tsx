@@ -16,7 +16,7 @@ export default function Home() {
       {/* The guest badge hangs over the footer gradient: centred in the empty
           space at the bottom on small screens, bottom-left beside the column
           on desktop. It overlays, so it costs no vertical room. */}
-      <HangingBadge className="absolute bottom-0 left-1/2 z-10 h-[360px] w-[360px] -translate-x-1/2 lg:bottom-[max(0px,calc(6vh-150px))] lg:left-[calc(max(24px,50vw-700px)-100px)] lg:h-[520px] lg:w-[520px] lg:translate-x-0" />
+      <HangingBadge className="absolute bottom-0 left-1/2 z-20 h-[360px] w-[360px] -translate-x-1/2 lg:bottom-[max(0px,calc(6vh-150px))] lg:left-[calc(max(24px,50vw-700px)-100px)] lg:h-[520px] lg:w-[520px] lg:translate-x-0" />
       {/* Sky band: pure CSS gradients (see .sky in globals.css), kept at the
           old image's 2466x924 aspect so it sits the same on every width. */}
       <div
@@ -37,7 +37,16 @@ export default function Home() {
             </Tooltip>
           </p>
           <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
-            incoming swe @ <span className="text-accent-deep">google</span>
+            incoming swe @{" "}
+            <IconPill>
+              google
+              <GoogleIcon />
+            </IconPill>{" "}
+            on{" "}
+            <IconPill>
+              youtube
+              <YouTubeIcon />
+            </IconPill>
           </p>
         </div>
         <nav
@@ -96,6 +105,7 @@ export default function Home() {
           */}
 
           <div className="flex w-full flex-col gap-5 text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text-mid">
+            {/* first line lives in the header tagline now
             <p>
               incoming software engineer at{" "}
               <IconPill>
@@ -109,6 +119,7 @@ export default function Home() {
               </IconPill>
               .
             </p>
+            */}
             <p>
               currently building consumer apps. previously interned on the{" "}
               <IconPill>

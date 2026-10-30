@@ -26,6 +26,9 @@ export default function ImageReveal({
 }) {
   const [pinned, setPinned] = useState(false);
   const [hovered, setHovered] = useState(false);
+  /* On touch devices the preview never opens: a tap focuses the link,
+     which would open the card under the finger and swallow the click. */
+  const canHover = () => window.matchMedia("(hover: hover)").matches;
   const open = pinned || hovered;
   const root = useRef<HTMLSpanElement>(null);
   const id = useId();
@@ -51,14 +54,21 @@ export default function ImageReveal({
       ref={root}
       className={styles.root}
       data-open={open}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      /* Pointer events, not mouse events: mouse-enter handlers make iOS
+         Safari treat the first tap as a hover, so a link would need two
+         taps. Touch pointers are ignored, so a tap navigates at once. */
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "touch" && canHover()) setHovered(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "touch") setHovered(false);
+      }}
     >
       {href ? (
         <Link
           href={href}
           className={styles.trigger}
-          onFocus={() => setHovered(true)}
+          onFocus={() => canHover() && setHovered(true)}
           onBlur={() => setHovered(false)}
         >
           {children}
@@ -73,7 +83,7 @@ export default function ImageReveal({
           aria-expanded={open}
           aria-controls={id}
           onClick={() => setPinned((p) => !p)}
-          onFocus={() => setHovered(true)}
+          onFocus={() => canHover() && setHovered(true)}
           onBlur={() => setHovered(false)}
         >
           {children}

@@ -7,7 +7,8 @@ import {
   useThree,
   type ThreeEvent,
 } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import BadgePhotoView, { type Quad } from "./BadgePhotoView";
 import * as THREE from "three";
 
 /* The real badge that lived on my monitor, pinned through its slot as a
@@ -25,17 +26,24 @@ function Badge({
   reduced,
   shadowOpacity,
   scale,
+  hidden,
+  onTap,
 }: {
   reduced: boolean;
   shadowOpacity: number;
   scale: number;
+  /* true while the photo view owns the badge */
+  hidden: boolean;
+  /* a click without a drag: receives the badge's projected quad in viewport px */
+  onTap: (quad: Quad) => void;
 }) {
   const texture = useLoader(THREE.TextureLoader, "/guest-badge.webp");
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 4;
 
   const pivot = useRef<THREE.Group>(null);
-  const { viewport } = useThree();
+  const card = useRef<THREE.Mesh>(null);
+  const { viewport, camera, gl } = useThree();
   /* pin at the canvas centre so a full loop over the top still fits */
   const anchorY = 0;
   /* the pin goes through the slot, so the pivot-to-centre arm is short */
@@ -50,7 +58,30 @@ function Badge({
     dragging: false,
     lastTheta: 0,
     lastTime: 0,
+    downX: 0,
+    downY: 0,
+    downT: 0,
   });
+
+  /* The card's four corners projected to viewport pixels, so the 2D copy
+     can start exactly where the 3D badge is drawn, tilt included. */
+  const projectedQuad = (): Quad => {
+    const m = card.current!;
+    const rect = gl.domElement.getBoundingClientRect();
+    const corners = [
+      [-BADGE_W / 2, BADGE_H / 2],
+      [BADGE_W / 2, BADGE_H / 2],
+      [BADGE_W / 2, -BADGE_H / 2],
+      [-BADGE_W / 2, -BADGE_H / 2],
+    ];
+    return corners.map(([x, y]) => {
+      const v = m.localToWorld(new THREE.Vector3(x, y, 0)).project(camera);
+      return [
+        rect.left + ((v.x + 1) / 2) * rect.width,
+        rect.top + ((1 - v.y) / 2) * rect.height,
+      ];
+    }) as Quad;
+  };
 
   useFrame((_, rawDt) => {
     const st = s.current;
@@ -90,6 +121,9 @@ function Badge({
     st.omega = 0;
     st.lastTheta = st.theta;
     st.lastTime = performance.now();
+    st.downX = e.clientX;
+    st.downY = e.clientY;
+    st.downT = st.lastTime;
     document.body.style.cursor = "grabbing";
   };
   const onMove = (e: ThreeEvent<PointerEvent>) => {
@@ -109,12 +143,19 @@ function Badge({
     st.dragging = false;
     (e.target as Element).releasePointerCapture(e.pointerId);
     document.body.style.cursor = "";
+    /* a short press with no travel is a tap: open the photo view */
+    const moved = Math.hypot(e.clientX - st.downX, e.clientY - st.downY);
+    if (moved < 6 && performance.now() - st.downT < 350) {
+      st.omega = 0;
+      onTap(projectedQuad());
+      return;
+    }
     /* a fling that is too slow still gets a nudge so it never feels dead */
     if (Math.abs(st.omega) < 0.3) st.omega += Math.sign(st.theta || 1) * -0.3;
   };
 
   return (
-    <group position={[0, anchorY, 0]} scale={scale}>
+    <group position={[0, anchorY, 0]} scale={scale} visible={!hidden}>
       {/* invisible "page" behind the badge that only shows the shadow it
           casts, so the card reads as floating above the page */}
       <mesh position={[0, 0, -0.18]} receiveShadow>
@@ -138,6 +179,7 @@ function Badge({
         {/* badge: textured front, plain card back so it reads as a real card */}
         <group position={[0, -(BADGE_H / 2 - SLOT_FROM_TOP), 0]}>
           <mesh
+            ref={card}
             castShadow
             onPointerDown={onDown}
             onPointerMove={onMove}
@@ -181,6 +223,8 @@ export default function HangingBadge({
   const [visible, setVisible] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [dark, setDark] = useState(false);
+  const [view, setView] = useState<Quad | null>(null);
+  const closeView = useCallback(() => setView(null), []);
 
   /* Only run the render loop while the badge is on screen. */
   useEffect(() => {
@@ -208,7 +252,7 @@ export default function HangingBadge({
     <div
       ref={host}
       className={className}
-      aria-label="my old google guest badge, hanging"
+      aria-label="my old google guest badge, hanging. click it to see where it lived"
       role="img"
     >
       <Canvas
@@ -240,9 +284,12 @@ export default function HangingBadge({
             reduced={reduced}
             shadowOpacity={dark ? 0.42 : 0.18}
             scale={scale}
+            hidden={view !== null}
+            onTap={setView}
           />
         </Suspense>
       </Canvas>
+      {view && <BadgePhotoView start={view} onClose={closeView} />}
     </div>
   );
 }
