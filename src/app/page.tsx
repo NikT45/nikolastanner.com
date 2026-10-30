@@ -1,7 +1,7 @@
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HangingBadge from "@/components/HangingBadgeLoader";
-import Link from "next/link";
+import ImageReveal from "@/components/ImageReveal";
 import HorseAnimation from "@/components/HorseAnimation";
 import { EdgeGalleryIcon, GoogleIcon, IconPill, YouTubeIcon } from "@/components/InlineIcon";
 import ProjectsSplit, { type SplitProject } from "@/components/ProjectsSplit";
@@ -129,12 +129,15 @@ export default function Home() {
               team, where i built a desktop ai app end to end.
             </p>
             <p>
-              <Link
+              <ImageReveal
+                src="/best-decision.webp"
+                alt="family chat: me saying i'm thinking of switching to computer science because studying business is boring"
+                width={800}
+                height={845}
                 href="/story"
-                className="border-b border-dotted border-accent/70 pb-px text-text no-underline transition-colors duration-200 hover:border-accent hover:text-accent"
               >
                 used to be a business major lol
-              </Link>
+              </ImageReveal>
             </p>
           </div>
         </section>
