@@ -11,7 +11,7 @@ import WorkRow, { type WorkEntry } from "@/components/WorkRow";
 
 export default function Home() {
   return (
-    <div className="relative isolate flex min-h-screen flex-col items-center px-6">
+    <div className="relative isolate flex min-h-screen flex-col items-center overflow-x-clip px-6">
       <DiaGradient />
       {/* The guest badge hangs over the footer gradient: centred in the empty
           space at the bottom on small screens, bottom-left beside the column
@@ -36,7 +36,7 @@ export default function Home() {
               唐旭东
             </Tooltip>
           </p>
-          <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.5] text-text whitespace-nowrap">
+          <p className="mt-4 font-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.75] text-text">
             incoming swe @
             <IconPill>
               google

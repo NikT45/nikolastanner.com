@@ -10,7 +10,7 @@ export const metadata: Metadata = {
    type as the home page, with the two artefacts from that summer. */
 export default function Story() {
   return (
-    <div className="relative isolate flex min-h-screen flex-col items-center px-6">
+    <div className="relative isolate flex min-h-screen flex-col items-center overflow-x-clip px-6">
       <div
         aria-hidden="true"
         className="sky pointer-events-none absolute inset-x-0 top-0 z-0 h-[37.5vw] max-h-[540px]"
