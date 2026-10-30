@@ -37,8 +37,8 @@ export const metadata: Metadata = {
       {
         url: "/banner.png",
         width: 1200,
-        height: 628,
-        alt: "Nikolas Tanner — Software Engineer",
+        height: 627,
+        alt: "nikolas tanner",
       },
     ],
   },
