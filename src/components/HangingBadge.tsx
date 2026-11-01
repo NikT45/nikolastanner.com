@@ -104,6 +104,20 @@ function Badge({
     }
   });
 
+  /* The canvas is a large square over the page, so it must stay scrollable
+     on touch. Only a touch that lands on the card should start a drag:
+     pointerdown fires before touchstart for the same finger, so by the time
+     touchstart arrives `dragging` says whether the card was hit, and only
+     then is the browser's scroll gesture cancelled. */
+  useEffect(() => {
+    const el = gl.domElement;
+    const block = (e: TouchEvent) => {
+      if (s.current.dragging) e.preventDefault();
+    };
+    el.addEventListener("touchstart", block, { passive: false });
+    return () => el.removeEventListener("touchstart", block);
+  }, [gl]);
+
   /* Pointer position → swing angle. The badge centre sits at (armLen·sinθ,
      -armLen·cosθ) below the pivot, so θ = atan2(x, -y) of the pointer
      relative to the pivot. */
@@ -261,7 +275,9 @@ export default function HangingBadge({
         frameloop={visible ? "always" : "never"}
         camera={{ position: [0, 0, 8.6], fov: 32 }}
         gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
-        style={{ background: "transparent", touchAction: "none" }}
+        /* pan-y keeps page scrolling alive over the empty parts of the
+           canvas; touches on the card itself are cancelled in Badge */
+        style={{ background: "transparent", touchAction: "pan-y" }}
       >
         <ambientLight intensity={1.15} />
         <directionalLight
