@@ -167,7 +167,7 @@ export default function Home() {
             projects={[
               {
                 name: "nimbit",
-                desc: "chrome extension that finishes your emails as you type. ghost-text completions you accept with tab",
+                desc: "chrome extension that finishes your sentences anywhere you type. ghost-text completions you accept with tab",
                 video: "/projects/final/nimbit.mp4",
                 poster: "/projects/final/nimbit.jpg",
                 href: "https://www.usenimbit.com",
