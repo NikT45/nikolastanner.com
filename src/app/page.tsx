@@ -151,7 +151,7 @@ export default function Home() {
                 year: "2027 · 2026",
                 roles: [
                   { desc: "software engineer · youtube", when: "incoming · aug 2027", upcoming: true },
-                  { desc: "swe intern · ai edge gallery, a consumer app for on-device ai", when: "may – aug 2026 · 14 wks" },
+                  { desc: "swe intern · ai edge gallery", when: "may – aug 2026 · 14 wks" },
                 ],
               },
               { name: "habits inc.", desc: "internal dashboard", year: "2025", months: "feb – apr · 12 wks" },
