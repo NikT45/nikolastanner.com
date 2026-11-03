@@ -31,11 +31,11 @@ export default async function ChessLine() {
     >
       <svg
         viewBox="0 0 24 24"
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         fill="none"
         stroke="currentColor"
-        strokeWidth={1.5}
+        strokeWidth={1.7}
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
