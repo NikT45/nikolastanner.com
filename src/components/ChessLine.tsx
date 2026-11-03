@@ -46,7 +46,7 @@ export default async function ChessLine() {
         <path d="M8 19L16 19" />
       </svg>
       <span>
-        <span className="text-text tabular-nums transition-colors duration-200 group-hover:text-accent">
+        <span className="tabular-nums">
           {c.rating}
         </span>{" "}
         rapid
