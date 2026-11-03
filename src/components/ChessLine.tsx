@@ -29,7 +29,7 @@ export default async function ChessLine() {
       className="group mt-3 inline-flex items-center gap-2.5 self-start text-[0.8125rem] tracking-[0.12em] text-text-dim no-underline transition-colors duration-200 hover:text-accent"
       aria-label={`chess.com rapid rating ${c.rating}, peak ${c.best}`}
     >
-      <span aria-hidden="true" className="text-[0.9em]">
+      <span aria-hidden="true" className="text-[1.45em] leading-none -mt-px">
         ♞
       </span>
       <span>
