@@ -29,9 +29,21 @@ export default async function ChessLine() {
       className="group mt-3 inline-flex items-center gap-2.5 self-start text-[0.8125rem] tracking-[0.12em] text-text-dim no-underline transition-colors duration-200 hover:text-accent"
       aria-label={`chess.com rapid rating ${c.rating}, peak ${c.best}`}
     >
-      <span aria-hidden="true" className="text-[1.45em] leading-none -mt-px">
-        ♞
-      </span>
+      <svg
+        viewBox="0 0 24 24"
+        width="17"
+        height="17"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className="-mt-px shrink-0"
+      >
+        <path d="M8 16l-1.447.724A1 1 0 0 0 6 17.618V20h13v-2.382a1 1 0 0 0-.553-.894L17 16H8z" />
+        <path d="M9 3l1 3-3.491 2.148a1 1 0 0 0 .524 1.852H10l-2.073 6h6.073l-1-4 3-1.5 1 .5V5a2 2 0 0 0-2-2H9z" />
+      </svg>
       <span>
         <span className="text-text tabular-nums transition-colors duration-200 group-hover:text-accent">
           {c.rating}
