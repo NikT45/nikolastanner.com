@@ -1,3 +1,4 @@
+import ChessSection from "@/components/ChessSection";
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HangingBadge from "@/components/HangingBadgeLoader";
@@ -192,6 +193,8 @@ export default function Home() {
             ] satisfies SplitProject[]}
           />
         </section>
+
+        <ChessSection />
 
         {/* Rule is hidden on mobile: the horse sits above this section's top
             edge there and the divider cuts straight through it. */}
