@@ -137,7 +137,6 @@ export default function BadgePhotoView({
   const blank = useRef<HTMLImageElement>(null);
   const top = useRef<HTMLDivElement>(null);
   const bottom = useRef<HTMLDivElement>(null);
-  const shade = useRef<HTMLDivElement>(null);
   const caption = useRef<HTMLParagraphElement>(null);
   const closing = useRef(false);
   const cancel = useRef<() => void>(() => {});
@@ -179,7 +178,6 @@ export default function BadgePhotoView({
       blank: blank.current!,
       top: top.current!,
       bottom: bottom.current!,
-      shade: shade.current!,
       caption: caption.current!,
     };
     el.photo.style.left = `${px}px`;
@@ -260,7 +258,6 @@ export default function BadgePhotoView({
         );
         const p = Math.max(0, (t - 0.35) / 0.65);
         el.blank.style.opacity = String(p);
-        el.shade.style.opacity = String(0.35 * p);
       });
       if (stopped) return;
       // landing: the real photo comes up as the copy fades, so the copy
@@ -269,7 +266,6 @@ export default function BadgePhotoView({
         el.photo.style.opacity = String(t);
         el.caption.style.opacity = String(t);
         el.top.style.opacity = el.bottom.style.opacity = String(1 - t);
-        el.shade.style.opacity = String(0.35 * (1 - t));
       });
     };
     run();
@@ -289,13 +285,11 @@ export default function BadgePhotoView({
         el.top.style.opacity = el.bottom.style.opacity = String(t);
         el.photo.style.opacity = String(1 - t);
         el.caption.style.opacity = String(1 - t);
-        el.shade.style.opacity = String(0.35 * t);
       });
       await stage(1000, (t) => {
         set(lerpQ(photoTop, startTop, t), lerpQ(photoBottom, startBottom, t));
         const p = Math.max(0, 1 - t / 0.65);
         el.blank.style.opacity = String(p);
-        el.shade.style.opacity = String(0.35 * p);
         el.root.style.setProperty(
           "--backdrop",
           String(0.86 * Math.max(0, 1 - (t - 0.4) / 0.6)),
@@ -367,11 +361,6 @@ export default function BadgePhotoView({
           alt=""
           aria-hidden="true"
           className="absolute left-0 w-full"
-        />
-        {/* fold shading on the bent half */}
-        <div
-          ref={shade}
-          className="pointer-events-none absolute inset-0 opacity-0 [background:linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0)_45%)]"
         />
       </div>
     </div>,
