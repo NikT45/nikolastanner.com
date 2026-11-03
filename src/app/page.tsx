@@ -1,4 +1,4 @@
-import ChessSection from "@/components/ChessSection";
+import ChessLine from "@/components/ChessLine";
 import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HangingBadge from "@/components/HangingBadgeLoader";
@@ -49,6 +49,7 @@ export default function Home() {
               <YouTubeIcon />
             </IconPill>
           </p>
+          <ChessLine />
         </div>
         <nav
           aria-label="contact"
@@ -193,8 +194,6 @@ export default function Home() {
             ] satisfies SplitProject[]}
           />
         </section>
-
-        <ChessSection />
 
         {/* Rule is hidden on mobile: the horse sits above this section's top
             edge there and the divider cuts straight through it. */}
