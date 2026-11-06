@@ -3,7 +3,7 @@ import CopyButton from "@/components/CopyButton";
 import DiaGradient from "@/components/DiaGradient";
 import HangingBadge from "@/components/HangingBadgeLoader";
 import ImageReveal from "@/components/ImageReveal";
-import HorseAnimation from "@/components/HorseAnimation";
+// import HorseAnimation from "@/components/HorseAnimation";
 import { EdgeGalleryIcon, GoogleIcon, IconPill, YouTubeIcon } from "@/components/InlineIcon";
 import ProjectsSplit, { type SplitProject } from "@/components/ProjectsSplit";
 import NameCard from "@/components/NameCard";
@@ -198,7 +198,7 @@ export default function Home() {
         {/* Rule is hidden on mobile: the horse sits above this section's top
             edge there and the divider cuts straight through it. */}
         <section id="contact" className="scroll-mt-18 relative border-rule pt-14 sm:border-t">
-          <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" />
+          {/* <HorseAnimation className="absolute -top-10 right-0 sm:top-auto sm:bottom-0" /> */}
           <p className="text-[1.4rem] font-light text-accent-deep mb-10">
             reach out
           </p>
