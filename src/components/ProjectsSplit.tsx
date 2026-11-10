@@ -180,7 +180,7 @@ export default function ProjectsSplit({
   );
 }
 
-/* Plays only while on screen so three looping videos don't compete for
+/* Plays only while on screen so the looping videos don't compete for
    decode time, and stays on its poster when the visitor prefers reduced
    motion. */
 function DemoVideo({ project }: { project: SplitProject }) {
