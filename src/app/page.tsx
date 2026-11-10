@@ -168,6 +168,14 @@ export default function Home() {
             heading="projects"
             projects={[
               {
+                name: "piptrips",
+                desc: "group trip planner. everyone plans the days together, votes settle the arguments, and pip helps when asked",
+                video: "/projects/final/piptrips.mp4",
+                poster: "/projects/final/piptrips.jpg",
+                href: "https://www.piptrips.app",
+                linkLabel: "piptrips.app",
+              },
+              {
                 name: "nimbit",
                 desc: "chrome extension that finishes your sentences anywhere you type. ghost-text completions you accept with tab",
                 video: "/projects/final/nimbit.mp4",
