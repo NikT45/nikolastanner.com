@@ -29,6 +29,16 @@
   --font-sans: var(--font-figtree), "Figtree", sans-serif;
   /* strong ease-out for entrances and exits */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* projects layout switch: the incoming view rises in. Backwards fill only,
+     so no transform is left behind on the sticky split once it lands. */
+  --animate-view-in: view-in 450ms var(--ease-out) backwards;
+
+  @keyframes view-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
 }
 
 /* Theme is an explicit attribute set before first paint by the inline
