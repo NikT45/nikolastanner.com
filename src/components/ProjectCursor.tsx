@@ -259,7 +259,7 @@ function Visual({
   if (kind === "tab") {
     return (
       <span
-        className={`flex h-[22px] w-10 items-center justify-center rounded-[6px] border border-[#b9cbcf] bg-white/90 text-[11px] leading-none font-medium text-[#7e969c] shadow-[0_1.5px_0_rgb(30_49_57/0.18)] ${state}`}
+        className={`flex h-[22px] w-10 items-center justify-center rounded-[6px] border border-[#b9cbcf] bg-white text-[11px] leading-none font-medium text-[#7e969c] shadow-[0_1.5px_0_rgb(30_49_57/0.18)] ${state}`}
       >
         tab
       </span>
