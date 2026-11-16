@@ -55,7 +55,7 @@ export default function ProjectsSplit({
       let bestDist = Infinity;
       items.current.forEach((el, i) => {
         if (!el) return;
-        /* Measure the video, not its viewport-tall slot. */
+        /* Measure the video (wherever it is pinned), not its slot. */
         const r = (el.firstElementChild ?? el).getBoundingClientRect();
         const centre = r.top + r.height / 2;
         const dist = Math.abs(centre - mid);
@@ -127,11 +127,12 @@ export default function ProjectsSplit({
 
 /* Sticky split. On desktop the first demo sits a normal 40px under the
    heading, so the section opens like every other section. Each demo then
-   gets a viewport-tall slot, and the left column (sized to the video) pins
-   at the position where a demo rests centred in the viewport. It rides with
-   the first video on the way in and the last on the way out, so the text
-   is always beside a demo. Below lg the layout stacks and each demo carries
-   its own text. */
+   pins centred in the viewport and holds there for a short stretch of
+   scroll, until the next one rises up underneath and pushes it on. The left
+   column (sized to the video) pins at the same resting position for the
+   whole run, riding in with the first video and out with the last, so the
+   text is always beside a demo. Below lg the layout stacks and each demo
+   carries its own text. */
 function SplitView({
   projects,
   active,
@@ -151,6 +152,13 @@ function SplitView({
           ...WIDE_VARS,
           "--video-h": "calc((var(--split) - 400px) * 9 / 16)",
           "--rest-top": "calc(50vh - var(--video-h) / 2)",
+          /* Space kept between a pinned demo and the one pushing it out. */
+          "--card-gap": "64px",
+          /* Scroll distance a demo stays pinned: capped so tall screens
+             don't hold forever, and shrinking so demos are never more than
+             one screen apart. */
+          "--hold":
+            "max(0px, min(360px, 100vh - var(--video-h) - var(--card-gap)))",
         } as CSSProperties
       }
     >
@@ -195,9 +203,12 @@ function SplitView({
         })}
       </aside>
 
-      {/* Every slot but the last is viewport-tall with its video at the top,
-          so consecutive demos are exactly one screen apart. The last slot is
-          just its video, so the section ends right after it. */}
+      {/* Each slot is its video plus the hold distance, and the video is
+          sticky inside it: it pins at the resting position, the slot scrolls
+          on behind it, and the slot's end carries it away. Every slot but
+          the last ends a gap short, so the next demo arrives underneath just
+          as this one lets go. The last is released by the end of the
+          section. */}
       <div className="flex flex-col gap-16 lg:gap-0">
         {projects.map((p, i) => (
           <div
@@ -205,13 +216,15 @@ function SplitView({
             ref={(el) => {
               items.current[i] = el;
             }}
-            className={`flex flex-col gap-2.5 ${i < projects.length - 1 ? "lg:min-h-screen" : ""}`}
+            className={`flex flex-col gap-2.5 lg:min-h-[calc(var(--video-h)+var(--hold))] ${
+              i < projects.length - 1 ? "lg:box-content lg:pb-[var(--card-gap)]" : ""
+            }`}
           >
             <a
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="block lg:sticky lg:top-[var(--rest-top)]"
             >
               <DemoVideo project={p} />
             </a>
