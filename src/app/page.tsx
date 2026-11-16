@@ -174,6 +174,7 @@ export default function Home() {
                 poster: "/projects/final/piptrips.jpg",
                 href: "https://www.piptrips.app",
                 linkLabel: "piptrips.app",
+                cursor: "arrow",
               },
               {
                 name: "nimbit",
@@ -182,6 +183,7 @@ export default function Home() {
                 poster: "/projects/final/nimbit.jpg",
                 href: "https://www.usenimbit.com",
                 linkLabel: "usenimbit.com",
+                cursor: "tab",
               },
               {
                 name: "bond",
@@ -190,6 +192,7 @@ export default function Home() {
                 poster: "/projects/final/bond.jpg",
                 href: "https://bondcouples.com",
                 linkLabel: "bondcouples.com",
+                cursor: "glass",
               },
               {
                 name: "crestnotes",
@@ -198,6 +201,7 @@ export default function Home() {
                 poster: "/projects/final/crestnotes.jpg",
                 href: "https://crestnotes.com",
                 linkLabel: "crestnotes.com",
+                cursor: "audio",
               },
             ] satisfies SplitProject[]}
           />
