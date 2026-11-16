@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react";
+import ProjectCursor, { type CursorKind } from "./ProjectCursor";
 
 export interface SplitProject {
   name: string;
@@ -21,6 +22,8 @@ export interface SplitProject {
   href: string;
   /* Display form of the link, e.g. "usenimbit.com". */
   linkLabel: string;
+  /* Cursor shown in place of the pointer while a mouse is over the demo. */
+  cursor?: CursorKind;
 }
 
 /* stack: each demo pins beside its text and the next slides up over it.
@@ -217,6 +220,8 @@ export default function ProjectsSplit({
           <GridView projects={projects} />
         )}
       </div>
+
+      <ProjectCursor />
     </>
   );
 }
@@ -321,6 +326,7 @@ function StackView({
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
+              data-cursor={p.cursor}
               className={`block lg:sticky lg:top-[var(--rest-top)] ${
                 i > 0 ? "lg:mt-[var(--stack-gap)]" : ""
               }`}
@@ -357,6 +363,7 @@ function GridView({ projects }: { projects: SplitProject[] }) {
             href={p.href}
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor={p.cursor}
             className="block"
           >
             <DemoVideo project={p} />

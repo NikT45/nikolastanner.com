@@ -39,6 +39,16 @@
       transform: translateY(8px);
     }
   }
+
+  /* audio cursor (ProjectCursor.tsx): a bar shrinks to a dot and back.
+     Each bar sets its own duration and head start. */
+  --animate-audio-bar: audio-bar 500ms ease-in-out infinite alternate;
+
+  @keyframes audio-bar {
+    from {
+      transform: scaleY(0.35);
+    }
+  }
 }
 
 /* Theme is an explicit attribute set before first paint by the inline
@@ -279,6 +289,15 @@
 :root[data-theme-switching] *::before,
 :root[data-theme-switching] *::after {
   transition-duration: 0s !important;
+}
+
+/* Project demos swap the pointer for their own cursor (ProjectCursor.tsx).
+   The native one is hidden only once that component has mounted and only
+   for a real mouse, so a card is never left with no cursor at all. */
+@media (hover: hover) and (pointer: fine) {
+  :root[data-card-cursors] [data-cursor] {
+    cursor: none;
+  }
 }
 
 html {
